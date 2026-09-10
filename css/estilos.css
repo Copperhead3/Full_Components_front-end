@@ -1,0 +1,10 @@
+body{
+    background-color: rgb(255, 255, 255);
+}
+.navcolor{
+    background-color: #061A2B;
+}
+
+.navcolor .nav-link:hover{
+    color: #F4F7FA !important;
+}
