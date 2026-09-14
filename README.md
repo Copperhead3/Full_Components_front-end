@@ -1,1 +1,7 @@
-# Tienda_componentes_front-end
+# Tienda de componentes Full Components
+---
+
+**Equipo de trabajo:**
+- Vicente Chavez
+- Benjamín Figueroa
+- Felipe Martinez
