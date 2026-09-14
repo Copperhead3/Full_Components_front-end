@@ -1,0 +1,314 @@
+/* =========================================================
+   VARIABLES DE COLORES
+========================================================= */
+
+:root {
+
+    --azul-oscuro: #061A2B;
+
+    --azul-navy: #0A2239;
+
+    --azul-electrico: #087CF0;
+
+    --azul-claro: #3FA9FF;
+
+    --blanco: #FFFFFF;
+
+    --fondo: #F4F7FA;
+
+    --gris-borde: #E5EBF1;
+
+    --gris-texto: #64748B;
+
+    --rojo-oferta: #EF4444;
+
+}
+
+
+
+/* =========================================================
+   ESTILOS GENERALES
+========================================================= */
+
+body {
+
+    margin: 0;
+
+    background-color: var(--fondo);
+
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+
+
+/* =========================================================
+   NAVBAR PRINCIPAL
+========================================================= */
+
+.navbar-principal {
+
+    background-color: var(--azul-oscuro);
+
+    min-height: 75px;
+
+}
+
+
+.navbar-principal .container {
+
+    min-height: 75px;
+
+}
+
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.logo {
+
+    display: flex;
+
+    align-items: center;
+
+    text-decoration: none;
+
+}
+
+
+.logo-icon {
+
+    font-size: 2rem;
+
+    color: var(--azul-electrico);
+
+}
+
+
+.logo-texto {
+
+    display: flex;
+
+    flex-direction: column;
+
+    margin-left: 10px;
+
+    line-height: 1;
+
+}
+
+
+.logo-nombre {
+
+    color: var(--blanco);
+
+    font-size: 1.25rem;
+
+    font-weight: 700;
+
+}
+
+
+.logo-store {
+
+    color: var(--azul-claro);
+
+    font-size: 0.7rem;
+
+    font-weight: 600;
+
+    letter-spacing: 2px;
+
+    margin-top: 4px;
+
+}
+
+
+
+/* =========================================================
+   BUSCADOR
+========================================================= */
+
+.buscador {
+
+    display: flex;
+
+    flex: 1;
+
+    max-width: 600px;
+
+    margin: 0 35px;
+
+}
+
+
+.buscador .form-control {
+
+    height: 44px;
+    border: none;
+    border-radius: 8px 0 0 8px;
+    padding: 0 18px;
+
+}
+
+
+.buscador .form-control:focus {
+    box-shadow: none;
+}
+
+
+.btn-buscar {
+
+    width: 55px;
+    background-color: var(--azul-electrico);
+    color: var(--blanco);
+    border-radius: 0 8px 8px 0;
+
+}
+
+
+.btn-buscar:hover {
+    background-color: var(--azul-claro);
+    color: var(--blanco);
+}
+
+
+
+/* =========================================================
+   OPCIONES DEL NAVBAR
+========================================================= */
+
+.nav-opcion {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: var(--blanco);
+    text-decoration: none;
+    margin-left: 20px;
+    transition: color 0.2s ease;
+}
+
+
+.nav-opcion > i {
+
+    font-size: 1.5rem;
+
+}
+
+
+.nav-opcion:hover {
+
+    color: var(--azul-claro);
+
+}
+
+
+.nav-opcion-texto {
+
+    display: flex;
+
+    flex-direction: column;
+
+    line-height: 1.2;
+
+}
+
+
+.nav-opcion-texto small {
+
+    font-size: 0.7rem;
+
+    color: #CBD5E1;
+
+}
+
+
+.nav-opcion-texto span {
+
+    font-size: 0.85rem;
+
+    font-weight: 600;
+
+}
+
+
+
+/* =========================================================
+   CARRITO
+========================================================= */
+
+.carrito {
+
+    position: relative;
+
+}
+
+
+.carrito > i {
+
+    font-size: 1.6rem;
+
+}
+
+
+.carrito-cantidad {
+
+    position: absolute;
+
+    top: -8px;
+
+    left: 12px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 19px;
+
+    height: 19px;
+
+    background-color: var(--azul-electrico);
+
+    color: var(--blanco);
+
+    border-radius: 50%;
+
+    font-size: 0.65rem;
+
+    font-weight: 700;
+
+}
+
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 991px) {
+
+
+    .navbar-principal .container {
+
+        flex-wrap: wrap;
+
+    }
+
+
+    .buscador {
+
+        order: 5;
+
+        width: 100%;
+
+        max-width: none;
+
+        margin: 12px 0 5px;
+
+    }
+
+}
