@@ -4,105 +4,174 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FullComponents Store</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 </head>
 
 <body>
+
     <header>
+
+        <!-- Barra superior -->
         <nav class="navbar navbar-dark navbar-principal">
+            <div class="container">
 
-            <div class="container-fluid">
-                <!-- =========================
-                     LOGO
-                ========================== -->
-                <a href="index.html" class="navbar-brand logo">
-                    <div class="logo-icon">
-                        <i class="bi bi-pc-display"></i>
+                <!-- Logo -->
+                <a class="navbar-brand d-flex align-items-center" href="#">
+                    <span class="logo-icon">▣</span>
+                    <div class="ms-2">
+                        <span class="logo-text">FullComponents Stpr</span>
+                        <small class="d-block logo-subtitle">
+                            Componentes para grandes ideas
+                        </small>
                     </div>
-
-                    <div class="logo-texto">
-
-                        <span class="logo-nombre">
-                            FullComponents
-                        </span>
-
-                        <span class="logo-store">
-                            STORE
-                        </span>
-
-                    </div>
-
                 </a>
 
+                <!-- Buscador -->
+                <form class="d-flex buscador mx-4 flex-grow-1" role="search">
 
+                    <input class="form-control" type="search" placeholder="Buscar productos, marcas o categorías..."
+                        aria-label="Buscar">
 
-                <!-- =========================
-                     BUSCADOR
-                ========================== -->
-
-                <form class="buscador" role="search">
-
-                    <input type="search" class="form-control" placeholder="Buscar productos, marcas o categorías..."
-                        aria-label="Buscar productos">
-
-
-                    <button type="submit" class="btn btn-buscar">
-
-                        <i class="bi bi-search"></i>
-
+                    <button class="btn btn-buscar" type="submit">
+                        🔍
                     </button>
 
                 </form>
 
+                <!-- Usuario -->
+                <div class="nav-opciones d-flex align-items-center">
+
+                    <a href="#" class="nav-link text-white me-4">
+                        👤
+                        <span>Iniciar sesión</span>
+                    </a>
+
+                    <!-- Carrito -->
+                    <a href="#" class="nav-link text-white carrito">
+                        🛒
+                        <span>Carrito</span>
+                        <span class="badge rounded-pill">0</span>
+                    </a>
+
+                </div>
+
+            </div>
+        </nav>
 
 
-                <!-- =========================
-                     INICIO DE SESIÓN
-                ========================== -->
+        <!-- Segunda barra de navegación -->
+        <nav class="navbar navbar-expand-lg navbar-dark navbar-secundaria">
 
-                <a href="#" class="nav-opcion">
+            <div class="container">
 
-                    <i class="bi bi-person-circle"></i>
+                <!-- Botón responsive -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal"
+                    aria-controls="menuPrincipal" aria-expanded="false" aria-label="Mostrar navegación">
 
-                    <div class="nav-opcion-texto">
-                        <small>
-                            Hola,
-                        </small>
-                        <span>
-                            Iniciar sesión
-                        </span>
+                    <span class="navbar-toggler-icon"></span>
+
+                </button>
+
+
+                <div class="collapse navbar-collapse" id="menuPrincipal">
+
+                    <!-- Categorías -->
+                    <div class="dropdown">
+
+                        <button class="btn btn-categorias dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+
+                            ☰ Todas las categorías
+
+                        </button>
+
+                        <ul class="dropdown-menu">
+
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    Procesadores
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    Tarjetas gráficas
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    Placas madre
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    Memorias RAM
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    Almacenamiento
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    Fuentes de poder
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    Gabinetes
+                                </a>
+                            </li>
+
+                        </ul>
 
                     </div>
 
-                </a>
-                <!-- =========================
-                     CARRITO
-                ========================== -->
-                <a href="#" class="nav-opcion carrito">
-                    <i class="bi bi-cart3"></i>
 
+                    <!-- Menú principal -->
+                    <ul class="navbar-nav ms-4">
 
-                    <div class="nav-opcion-texto">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">
+                                Inicio
+                            </a>
+                        </li>
 
-                        <small>
-                            Tu
-                        </small>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                Categorías
+                            </a>
+                        </li>
 
-                        <span>
-                            Carrito
-                        </span>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                Ofertas
+                            </a>
+                        </li>
 
-                    </div>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                Novedades
+                            </a>
+                        </li>
 
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                Contacto
+                            </a>
+                        </li>
 
-                    <span class="carrito-cantidad">
-                        0
-                    </span>
+                    </ul>
 
-                </a>
-
+                </div>
 
             </div>
 
@@ -110,18 +179,11 @@
 
     </header>
 
-    <main>
 
-    </main>
 
-    <footer>
 
-    </footer>
 
-    <script 
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">
-    </script>
-    <script src="js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
