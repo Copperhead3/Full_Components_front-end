@@ -46,6 +46,12 @@
     color: #cbd5e1;
 }
 
+.logo-text-mobile {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--blanco);
+    white-space: nowrap;
+}
 
 /* =========================
    BUSCADOR
@@ -66,6 +72,15 @@
     box-shadow: none;
 }
 
+.buscador .form-control::placeholder {
+    font-size: 13px;
+}
+
+@media (max-width: 575.98px) {
+    .buscador .form-control::placeholder {
+        font-size: 12px;
+    }
+}
 
 .btn-buscar {
     background-color: var(--azul-electrico);
@@ -93,6 +108,13 @@
     color: var(--azul-claro) !important;
 }
 
+/* Solo en pantallas pequeñas */
+@media(max-width: 767.98px) {
+    .nav-opciones .nav-link {
+        font-size: 22px;
+        line-height: 1;
+    }
+}
 
 /* =========================
    CARRITO

@@ -11,17 +11,27 @@
 
 <body>
 
+     <!-- =========================
+         NAVBAR
+    ========================== -->
     <header>
 
-        <!-- Barra superior -->
         <nav class="navbar navbar-dark navbar-principal">
-            <div class="container">
+            <div class="container-fluid px-4">
 
                 <!-- Logo -->
+
                 <a class="navbar-brand d-flex align-items-center" href="#">
                     <span class="logo-icon">▣</span>
-                    <div class="ms-2">
-                        <span class="logo-text">FullComponents Stpr</span>
+                
+                    <!-- Nombre abreviado para móvil -->
+                    <span class="logo-text-mobile ms-2 d-md-none">
+                        FC Store
+                    </span>
+                
+                    <!-- Nombre completo para tablet y computador -->
+                    <div class="ms-2 d-none d-md-block">
+                        <span class="logo-text">FullComponents Store</span>
                         <small class="d-block logo-subtitle">
                             Componentes para grandes ideas
                         </small>
@@ -30,151 +40,90 @@
 
                 <!-- Buscador -->
                 <form class="d-flex buscador mx-4 flex-grow-1" role="search">
-
-                    <input class="form-control" type="search" placeholder="Buscar productos, marcas o categorías..."
+                    <input class="form-control" type="search"
+                        placeholder="Buscar productos, marcas o categorías..."
                         aria-label="Buscar">
-
-                    <button class="btn btn-buscar" type="submit">
-                        🔍
-                    </button>
-
+                    <button class="btn btn-buscar" type="submit">🔍</button>
                 </form>
 
                 <!-- Usuario -->
-                <div class="nav-opciones d-flex align-items-center">
+        <div class="nav-opciones d-flex align-items-center">
 
-                    <a href="login.html" class="nav-link text-white me-4">
-                        👤
-                        <span>Iniciar sesión</span>
-                    </a>
+             <!-- Iniciar sesión -->
+             <a href="login.html"
+             class="nav-link text-white me-4"
+              aria-label="Iniciar sesión"
+             title="Iniciar sesión">
+               👤
+             <span class="d-none d-md-inline">Iniciar sesión</span>
+             </a>
 
-                    <!-- Carrito -->
-                    <a href="#" class="nav-link text-white carrito">
-                        🛒
-                        <span>Carrito</span>
-                        <span class="badge rounded-pill">0</span>
-                    </a>
+              <!-- Carrito -->
+              <a href="#"
+              class="nav-link text-white carrito"
+               aria-label="Ver carrito"
+               title="Ver carrito">
+               🛒
+               <span class="d-none d-md-inline">Carrito</span>
+                <span class="badge rounded-pill">0</span>
+         </a>
 
+</div>
                 </div>
 
             </div>
         </nav>
 
-
-        <!-- Segunda barra de navegación -->
         <nav class="navbar navbar-expand-lg navbar-dark navbar-secundaria">
-
             <div class="container">
 
-                <!-- Botón responsive -->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal"
-                    aria-controls="menuPrincipal" aria-expanded="false" aria-label="Mostrar navegación">
-
+                <button class="navbar-toggler" type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#menuPrincipal"
+                    aria-controls="menuPrincipal"
+                    aria-expanded="false"
+                    aria-label="Mostrar navegación">
                     <span class="navbar-toggler-icon"></span>
-
                 </button>
-
 
                 <div class="collapse navbar-collapse" id="menuPrincipal">
 
-                    <!-- Categorías -->
                     <div class="dropdown">
-
-                        <button class="btn btn-categorias dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                        <button class="btn btn-categorias dropdown-toggle"
+                            type="button"
+                            data-bs-toggle="dropdown"
                             aria-expanded="false">
-
                             ☰ Todas las categorías
-
                         </button>
 
                         <ul class="dropdown-menu">
-
-                            <li>
-                                <a class="dropdown-item" href="#">
-                                    Procesadores
-                                </a>
-                            </li>
-
-                            <li>
-                                <a class="dropdown-item" href="#">
-                                    Tarjetas gráficas
-                                </a>
-                            </li>
-
-                            <li>
-                                <a class="dropdown-item" href="#">
-                                    Placas madre
-                                </a>
-                            </li>
-
-                            <li>
-                                <a class="dropdown-item" href="#">
-                                    Memorias RAM
-                                </a>
-                            </li>
-
-                            <li>
-                                <a class="dropdown-item" href="#">
-                                    Almacenamiento
-                                </a>
-                            </li>
-
-                            <li>
-                                <a class="dropdown-item" href="#">
-                                    Fuentes de poder
-                                </a>
-                            </li>
-
-                            <li>
-                                <a class="dropdown-item" href="#">
-                                    Gabinetes
-                                </a>
-                            </li>
-
+                            <li><a class="dropdown-item" href="#">Procesadores</a></li>
+                            <li><a class="dropdown-item" href="#">Tarjetas gráficas</a></li>
+                            <li><a class="dropdown-item" href="#">Placas madre</a></li>
+                            <li><a class="dropdown-item" href="#">Memorias RAM</a></li>
+                            <li><a class="dropdown-item" href="#">Almacenamiento</a></li>
+                            <li><a class="dropdown-item" href="#">Fuentes de poder</a></li>
+                            <li><a class="dropdown-item" href="#">Gabinetes</a></li>
                         </ul>
-
                     </div>
 
-
-                    <!-- Menú principal -->
                     <ul class="navbar-nav ms-4">
-
                         <li class="nav-item">
-                            <a class="nav-link active" href="#">
-                                Inicio
-                            </a>
+                            <a class="nav-link" href="index.html">Inicio</a>
                         </li>
-
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                Categorías
-                            </a>
+                            <a class="nav-link" href="#">Categorías</a>
                         </li>
-
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                Ofertas
-                            </a>
+                            <a class="nav-link" href="#">Ofertas</a>
                         </li>
-
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                Novedades
-                            </a>
+                            <a class="nav-link" href="#">Novedades</a>
                         </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                Contacto
-                            </a>
-                        </li>
-
                     </ul>
 
                 </div>
-
             </div>
-
         </nav>
 
     </header>
