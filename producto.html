@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Producto | FullComponents</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+    <link href="css/style.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #f5f6f8;
+        }
+
+        .ficha-producto,
+        .seccion-producto {
+            background-color: #fff;
+            border: 1px solid #e9ecef;
+            border-radius: 12px;
+        }
+
+        .imagen-principal {
+            width: 100%;
+            height: 420px;
+            object-fit: contain;
+            padding: 24px;
+        }
+
+        .categoria-producto {
+            color: #6c757d;
+            font-size: 0.95rem;
+        }
+
+        .precio-producto {
+            color: #dc3545;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .tabla-especificaciones th {
+            width: 40%;
+        }
+
+        @media (max-width: 767px) {
+            .imagen-principal {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <!-- Barra superior: misma estructura de tu index.html -->
+        <nav class="navbar navbar-dark navbar-principal">
+            <div class="container">
+
+                <a class="navbar-brand d-flex align-items-center" href="index.html">
+                    <span class="logo-icon">▣</span>
+
+                    <div class="ms-2">
+                        <span class="logo-text">FullComponents Stpr</span>
+                        <small class="d-block logo-subtitle">
+                            Componentes para grandes ideas
+                        </small>
+                    </div>
+                </a>
+
+                <form
+                    class="d-flex buscador mx-4 flex-grow-1"
+                    action="catalogo.html"
+                    method="get"
+                    role="search"
+                >
+                    <input
+                        class="form-control"
+                        type="search"
+                        name="q"
+                        placeholder="Buscar productos, marcas o categorías..."
+                        aria-label="Buscar productos"
+                    >
+
+                    <button class="btn btn-buscar" type="submit" aria-label="Buscar">
+                        🔍
+                    </button>
+                </form>
+
+                <div class="nav-opciones d-flex align-items-center">
+                    <a href="#" class="nav-link text-white me-4">
+                        👤 <span>Iniciar sesión</span>
+                    </a>
+
+                    <a href="#" class="nav-link text-white carrito">
+                        🛒 <span>Carrito</span>
+                        <span class="badge rounded-pill">0</span>
+                    </a>
+                </div>
+
+            </div>
+        </nav>
+
+        <!-- Segunda barra de navegación -->
+        <nav class="navbar navbar-expand-lg navbar-dark navbar-secundaria">
+            <div class="container">
+
+                <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#menuPrincipal"
+                    aria-controls="menuPrincipal"
+                    aria-expanded="false"
+                    aria-label="Mostrar navegación"
+                >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="menuPrincipal">
+
+                    <div class="dropdown">
+                        <button
+                            class="btn btn-categorias dropdown-toggle"
+                            type="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                        >
+                            ☰ Todas las categorías
+                        </button>
+
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item" href="catalogo.html?categoria=Procesadores">
+                                    Procesadores
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="catalogo.html?categoria=Tarjetas%20gr%C3%A1ficas">
+                                    Tarjetas gráficas
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="catalogo.html?categoria=Memorias%20RAM">
+                                    Memorias RAM
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="catalogo.html?categoria=Almacenamiento">
+                                    Almacenamiento
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="catalogo.html?categoria=Fuentes%20de%20poder">
+                                    Fuentes de poder
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="catalogo.html?categoria=Gabinetes">
+                                    Gabinetes
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <ul class="navbar-nav ms-lg-4">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="catalogo.html">Catálogo</a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container py-4 py-md-5">
+
+        <nav aria-label="Ruta de navegación">
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item">
+                    <a href="index.html">Inicio</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="catalogo.html">Catálogo</a>
+                </li>
+                <li
+                    class="breadcrumb-item active"
+                    id="breadcrumbProducto"
+                    aria-current="page"
+                >
+                    Producto
+                </li>
+            </ol>
+        </nav>
+
+        <!-- El contenido se completa con los datos de productos.js -->
+        <div id="contenidoProducto">
+            <p class="text-muted">Cargando producto...</p>
+        </div>
+
+    </main>
+
+    <script src="js/productos.js"></script>
+
+    <script>
+        const parametros = new URLSearchParams(window.location.search);
+        const idProducto = parametros.get("id");
+
+        // Los IDs de productos.js son textos: no usar Number(idProducto).
+        const producto = productos.find(item => item.id === idProducto);
+
+        const contenido = document.getElementById("contenidoProducto");
+        const breadcrumb = document.getElementById("breadcrumbProducto");
+
+        if (!producto) {
+            contenido.innerHTML = `
+                <div class="alert alert-warning" role="alert">
+                    <h1 class="h4">Producto no encontrado</h1>
+                    <p>Revisa el enlace o vuelve al catálogo para elegir un producto.</p>
+                    <a href="catalogo.html" class="btn btn-primary">
+                        Volver al catálogo
+                    </a>
+                </div>
+            `;
+        } else {
+            document.title = `${producto.nombre} | FullComponents`;
+            breadcrumb.textContent = producto.nombre;
+
+            // Construimos la estructura sin insertar los datos como HTML.
+            contenido.innerHTML = `
+                <div class="ficha-producto p-3 p-md-4 shadow-sm">
+                    <div class="row g-4 align-items-start">
+
+                        <div class="col-lg-6">
+                            <div class="border rounded bg-white text-center">
+                                <img
+                                    id="imagenProducto"
+                                    class="imagen-principal"
+                                    alt=""
+                                >
+                            </div>
+
+                            <p class="small text-muted mt-2 mb-0">
+                                Imagen referencial del producto.
+                            </p>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <p
+                                class="categoria-producto mb-2"
+                                id="categoriaProducto"
+                            ></p>
+
+                            <h1 class="h2 mb-3" id="nombreProducto"></h1>
+
+                            <p class="text-muted mb-2">
+                                Marca: <span id="marcaProducto"></span>
+                            </p>
+
+                            <p class="text-muted">
+                                Modelo: <span id="modeloProducto"></span>
+                            </p>
+
+                            <hr>
+
+                            <p
+                                class="precio-producto mb-2"
+                                id="precioProducto"
+                            ></p>
+
+                            <p class="text-muted small mb-4">
+                                Precio mostrado según los datos del catálogo.
+                            </p>
+
+                            <h2 class="h5">Descripción</h2>
+                            <p id="descripcionProducto"></p>
+
+                            <div class="alert alert-light border mt-4 mb-0">
+                                Disponibilidad, despacho y garantía:
+                                consulta estos datos antes de realizar una compra.
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <section class="seccion-producto p-3 p-md-4 mt-4 shadow-sm">
+                    <h2 class="h4 mb-3">Especificaciones técnicas</h2>
+
+                    <div class="table-responsive">
+                        <table class="table table-striped tabla-especificaciones mb-0">
+                            <tbody id="tablaEspecificaciones"></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <div class="mt-4">
+                    <a href="catalogo.html" class="btn btn-outline-primary">
+                        ← Volver al catálogo
+                    </a>
+                </div>
+            `;
+
+            document.getElementById("categoriaProducto").textContent =
+                producto.categoria;
+
+            document.getElementById("nombreProducto").textContent =
+                producto.nombre;
+
+            document.getElementById("marcaProducto").textContent =
+                producto.marca;
+
+            document.getElementById("modeloProducto").textContent =
+                producto.modelo;
+
+            document.getElementById("precioProducto").textContent =
+                new Intl.NumberFormat("es-CL", {
+                    style: "currency",
+                    currency: "CLP",
+                    maximumFractionDigits: 0
+                }).format(producto.precio);
+
+            document.getElementById("descripcionProducto").textContent =
+                producto.descripcion;
+
+            const imagen = document.getElementById("imagenProducto");
+            imagen.src = producto.imagen;
+            imagen.alt = producto.nombre;
+
+            const tabla = document.getElementById("tablaEspecificaciones");
+
+            Object.entries(producto.especificaciones).forEach(
+                ([caracteristica, valor]) => {
+                    const fila = document.createElement("tr");
+                    const encabezado = document.createElement("th");
+                    const dato = document.createElement("td");
+
+                    encabezado.scope = "row";
+                    encabezado.textContent = caracteristica;
+                    dato.textContent = valor;
+
+                    fila.append(encabezado, dato);
+                    tabla.appendChild(fila);
+                }
+            );
+        }
+    </script>
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    ></script>
+
+</body>
+</html>
