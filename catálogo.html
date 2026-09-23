@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo | FullComponents</title>
+    <title>Catálogo | FullComponents Store</title>
 
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
@@ -15,6 +15,20 @@
     <style>
         body {
             background-color: #f5f6f8;
+        }
+
+        /* Ajustes de la barra superior para pantallas pequeñas */
+        .barra-superior-contenido {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .barra-superior-contenido .buscador {
+            min-width: 180px;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
         }
 
         .panel-filtros,
@@ -34,12 +48,17 @@
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.10);
         }
 
+        .enlace-imagen {
+            display: block;
+            background-color: #fff;
+        }
+
         .imagen-catalogo {
+            display: block;
             width: 100%;
             height: 220px;
             object-fit: contain;
             padding: 18px;
-            background-color: #fff;
         }
 
         .nombre-producto {
@@ -52,30 +71,66 @@
             font-size: 1.4rem;
             font-weight: 700;
         }
+
+        @media (max-width: 767px) {
+            .barra-superior-contenido .navbar-brand {
+                margin-right: auto;
+            }
+
+            .barra-superior-contenido .nav-opciones {
+                order: 2;
+            }
+
+            .barra-superior-contenido .buscador {
+                order: 3;
+                flex-basis: 100%;
+            }
+
+            .imagen-catalogo {
+                height: 190px;
+            }
+        }
+
+        @media (max-width: 575px) {
+            .tarjeta-producto .card-body-personalizado {
+                padding: 14px;
+            }
+        }
     </style>
 </head>
 
 <body>
 
     <header>
-        <!-- Barra superior: misma estructura de tu index.html -->
+        <!-- Barra superior -->
         <nav class="navbar navbar-dark navbar-principal">
-            <div class="container">
+            <div class="container-fluid px-4 barra-superior-contenido">
 
-                <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <!-- Logo: vuelve al inicio -->
+                <a
+                    class="navbar-brand d-flex align-items-center"
+                    href="index.html"
+                >
                     <span class="logo-icon">▣</span>
 
-                    <div class="ms-2">
-                        <span class="logo-text">FullComponents Stpr</span>
+                    <span class="logo-text-mobile ms-2 d-md-none">
+                        FC Store
+                    </span>
+
+                    <div class="ms-2 d-none d-md-block">
+                        <span class="logo-text">
+                            FullComponents Store
+                        </span>
                         <small class="d-block logo-subtitle">
                             Componentes para grandes ideas
                         </small>
                     </div>
                 </a>
 
+                <!-- Buscador del catálogo -->
                 <form
                     id="formularioBusqueda"
-                    class="d-flex buscador mx-4 flex-grow-1"
+                    class="d-flex buscador flex-grow-1"
                     role="search"
                 >
                     <input
@@ -96,13 +151,30 @@
                     </button>
                 </form>
 
+                <!-- Usuario y carrito -->
                 <div class="nav-opciones d-flex align-items-center">
-                    <a href="#" class="nav-link text-white me-4">
-                        👤 <span>Iniciar sesión</span>
+                    <a
+                        href="#"
+                        class="nav-link text-white me-4"
+                        aria-label="Iniciar sesión"
+                        title="Iniciar sesión"
+                    >
+                        👤
+                        <span class="d-none d-md-inline">
+                            Iniciar sesión
+                        </span>
                     </a>
 
-                    <a href="#" class="nav-link text-white carrito">
-                        🛒 <span>Carrito</span>
+                    <a
+                        href="#"
+                        class="nav-link text-white carrito"
+                        aria-label="Ver carrito"
+                        title="Ver carrito"
+                    >
+                        🛒
+                        <span class="d-none d-md-inline">
+                            Carrito
+                        </span>
                         <span class="badge rounded-pill">0</span>
                     </a>
                 </div>
@@ -126,8 +198,10 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse" id="menuPrincipal">
-
+                <div
+                    class="collapse navbar-collapse"
+                    id="menuPrincipal"
+                >
                     <div class="dropdown">
                         <button
                             class="btn btn-categorias dropdown-toggle"
@@ -140,37 +214,58 @@
 
                         <ul class="dropdown-menu">
                             <li>
-                                <a class="dropdown-item" href="catalogo.html">
-                                    Ver todos los productos
+                                <a
+                                    class="dropdown-item"
+                                    href="catalogo.html"
+                                >
+                                    Todos los productos
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="catalogo.html?categoria=Procesadores">
+                                <a
+                                    class="dropdown-item"
+                                    href="catalogo.html?categoria=Procesadores"
+                                >
                                     Procesadores
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="catalogo.html?categoria=Tarjetas%20gr%C3%A1ficas">
+                                <a
+                                    class="dropdown-item"
+                                    href="catalogo.html?categoria=Tarjetas%20gr%C3%A1ficas"
+                                >
                                     Tarjetas gráficas
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="catalogo.html?categoria=Memorias%20RAM">
+                                <a
+                                    class="dropdown-item"
+                                    href="catalogo.html?categoria=Memorias%20RAM"
+                                >
                                     Memorias RAM
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="catalogo.html?categoria=Almacenamiento">
+                                <a
+                                    class="dropdown-item"
+                                    href="catalogo.html?categoria=Almacenamiento"
+                                >
                                     Almacenamiento
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="catalogo.html?categoria=Fuentes%20de%20poder">
+                                <a
+                                    class="dropdown-item"
+                                    href="catalogo.html?categoria=Fuentes%20de%20poder"
+                                >
                                     Fuentes de poder
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="catalogo.html?categoria=Gabinetes">
+                                <a
+                                    class="dropdown-item"
+                                    href="catalogo.html?categoria=Gabinetes"
+                                >
                                     Gabinetes
                                 </a>
                             </li>
@@ -179,26 +274,46 @@
 
                     <ul class="navbar-nav ms-lg-4">
                         <li class="nav-item">
-                            <a class="nav-link" href="index.html">Inicio</a>
+                            <a class="nav-link" href="index.html">
+                                Inicio
+                            </a>
                         </li>
+
                         <li class="nav-item">
-                            <a class="nav-link active" href="catalogo.html">
-                                Catálogo
+                            <a
+                                class="nav-link active"
+                                href="catalogo.html"
+                                aria-current="page"
+                            >
+                                Categorías
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html#ofertas">
+                                Ofertas
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html#novedades">
+                                Novedades
                             </a>
                         </li>
                     </ul>
-
                 </div>
+
             </div>
         </nav>
     </header>
 
+    <!-- Aquí empieza el catálogo; no hay carrusel en esta página -->
     <main class="container py-4 py-md-5">
 
         <div class="mb-4">
             <h1 class="h2">Catálogo de productos</h1>
             <p class="text-muted mb-0">
-                Explora los componentes disponibles.
+                Encuentra los componentes que necesitas.
             </p>
         </div>
 
@@ -214,18 +329,29 @@
                         Categoría
                     </label>
 
-                    <select id="filtroCategoria" class="form-select mb-3">
+                    <select
+                        id="filtroCategoria"
+                        class="form-select mb-3"
+                    >
                         <option value="">Todas las categorías</option>
-                        <option value="Procesadores">Procesadores</option>
+                        <option value="Procesadores">
+                            Procesadores
+                        </option>
                         <option value="Tarjetas gráficas">
                             Tarjetas gráficas
                         </option>
-                        <option value="Memorias RAM">Memorias RAM</option>
-                        <option value="Almacenamiento">Almacenamiento</option>
+                        <option value="Memorias RAM">
+                            Memorias RAM
+                        </option>
+                        <option value="Almacenamiento">
+                            Almacenamiento
+                        </option>
                         <option value="Fuentes de poder">
                             Fuentes de poder
                         </option>
-                        <option value="Gabinetes">Gabinetes</option>
+                        <option value="Gabinetes">
+                            Gabinetes
+                        </option>
                     </select>
 
                     <label for="precioMinimo" class="form-label">
@@ -262,27 +388,52 @@
                 </div>
             </aside>
 
-            <!-- Resultados -->
-            <section class="col-lg-9" aria-label="Resultados del catálogo">
-
-                <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-3">
-                    <p id="cantidadResultados" class="text-muted mb-0"></p>
+            <!-- Productos -->
+            <section
+                class="col-lg-9"
+                aria-label="Resultados del catálogo"
+            >
+                <div
+                    class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-3"
+                >
+                    <p
+                        id="cantidadResultados"
+                        class="text-muted mb-0"
+                        aria-live="polite"
+                    ></p>
 
                     <div>
-                        <label for="ordenProductos" class="visually-hidden">
+                        <label
+                            for="ordenProductos"
+                            class="visually-hidden"
+                        >
                             Ordenar productos
                         </label>
 
-                        <select id="ordenProductos" class="form-select">
-                            <option value="original">Orden predeterminado</option>
-                            <option value="precio-asc">Menor precio</option>
-                            <option value="precio-desc">Mayor precio</option>
-                            <option value="nombre">Nombre A–Z</option>
+                        <select
+                            id="ordenProductos"
+                            class="form-select"
+                        >
+                            <option value="original">
+                                Orden predeterminado
+                            </option>
+                            <option value="precio-asc">
+                                Menor precio
+                            </option>
+                            <option value="precio-desc">
+                                Mayor precio
+                            </option>
+                            <option value="nombre">
+                                Nombre A–Z
+                            </option>
                         </select>
                     </div>
                 </div>
 
-                <div id="contenedorProductos" class="row g-4"></div>
+                <div
+                    id="contenedorProductos"
+                    class="row g-4"
+                ></div>
 
                 <div
                     id="sinResultados"
@@ -291,37 +442,48 @@
                 >
                     No se encontraron productos con esos filtros.
                 </div>
-
             </section>
 
         </div>
     </main>
 
-    <!-- Primero los datos; después el código que los utiliza -->
+    <!-- Debe cargarse antes del código que utiliza `productos` -->
     <script src="js/productos.js"></script>
 
     <script>
         const contenedor = document.getElementById("contenedorProductos");
-        const cantidadResultados = document.getElementById("cantidadResultados");
-        const mensajeSinResultados = document.getElementById("sinResultados");
+        const cantidadResultados =
+            document.getElementById("cantidadResultados");
+        const sinResultados =
+            document.getElementById("sinResultados");
 
-        const formularioBusqueda = document.getElementById("formularioBusqueda");
-        const entradaBusqueda = document.getElementById("busqueda");
-        const filtroCategoria = document.getElementById("filtroCategoria");
-        const precioMinimo = document.getElementById("precioMinimo");
-        const precioMaximo = document.getElementById("precioMaximo");
-        const ordenProductos = document.getElementById("ordenProductos");
-        const botonLimpiar = document.getElementById("limpiarFiltros");
+        const formularioBusqueda =
+            document.getElementById("formularioBusqueda");
+        const entradaBusqueda =
+            document.getElementById("busqueda");
 
-        const parametros = new URLSearchParams(window.location.search);
+        const filtroCategoria =
+            document.getElementById("filtroCategoria");
+        const precioMinimo =
+            document.getElementById("precioMinimo");
+        const precioMaximo =
+            document.getElementById("precioMaximo");
+        const ordenProductos =
+            document.getElementById("ordenProductos");
+        const limpiarFiltros =
+            document.getElementById("limpiarFiltros");
 
-        // Permite abrir catalogo.html?q=Intel
+        const parametros =
+            new URLSearchParams(window.location.search);
+
         entradaBusqueda.value = parametros.get("q") || "";
 
-        // Permite abrir catalogo.html?categoria=Procesadores
-        const categoriaInicial = parametros.get("categoria") || "";
-        const categoriasValidas = Array.from(filtroCategoria.options)
-            .map(opcion => opcion.value);
+        const categoriaInicial =
+            parametros.get("categoria") || "";
+
+        const categoriasValidas =
+            Array.from(filtroCategoria.options)
+                .map(opcion => opcion.value);
 
         if (categoriasValidas.includes(categoriaInicial)) {
             filtroCategoria.value = categoriaInicial;
@@ -335,6 +497,49 @@
             }).format(precio);
         }
 
+        /*
+         * En la captura, los nombres de las carpetas de estas dos RAM
+         * podrían contener uno o dos espacios entre GB y DIMM.
+         * Probamos ambas rutas para que la tarjeta encuentre la foto.
+         */
+        function posiblesRutasImagen(producto) {
+            const rutas = [producto.imagen];
+
+            if (producto.id === "adata-xpg-lancer-blade-rgb-8gb") {
+                rutas.push(
+                    "img/productos/A-DATA XPG Lancer Blade RGB (1 x 8 GB  DIMM DDR5-5600)/1926060_picture_1718382530.jpg",
+                    "img/productos/A-DATA XPG Lancer Blade RGB (1 x 8 GB DIMM DDR5-5600)/1926060_picture_1718382530.jpg"
+                );
+            }
+
+            if (producto.id === "kingston-fury-beast-16gb") {
+                rutas.push(
+                    "img/productos/Kingston Fury Beast (1 x 16 GB  DIMM DDR5-6400)/1962332_picture_1733757849.jpg",
+                    "img/productos/Kingston Fury Beast (1 x 16 GB DIMM DDR5-6400)/1962332_picture_1733757849.jpg"
+                );
+            }
+
+            // Evita intentar la misma ruta dos veces.
+            return [...new Set(rutas)];
+        }
+
+        function configurarImagen(imagen, producto) {
+            const rutas = posiblesRutasImagen(producto);
+            let indice = 0;
+
+            imagen.alt = producto.nombre;
+
+            imagen.addEventListener("error", () => {
+                indice++;
+
+                if (indice < rutas.length) {
+                    imagen.src = rutas[indice];
+                }
+            });
+
+            imagen.src = rutas[indice];
+        }
+
         function crearTarjeta(producto) {
             const columna = document.createElement("div");
             columna.className = "col-sm-6 col-xl-4";
@@ -342,10 +547,14 @@
             columna.innerHTML = `
                 <article class="tarjeta-producto h-100 d-flex flex-column shadow-sm">
                     <a class="enlace-imagen border-bottom" href="#">
-                        <img class="imagen-catalogo" alt="" loading="lazy">
+                        <img
+                            class="imagen-catalogo"
+                            alt=""
+                            loading="lazy"
+                        >
                     </a>
 
-                    <div class="p-3 d-flex flex-column flex-grow-1">
+                    <div class="card-body-personalizado p-3 d-flex flex-column flex-grow-1">
                         <small class="categoria text-muted"></small>
 
                         <h2 class="nombre-producto h5 mt-2"></h2>
@@ -354,7 +563,10 @@
 
                         <p class="precio-producto mt-auto mb-3"></p>
 
-                        <a class="enlace-detalle btn btn-primary w-100" href="#">
+                        <a
+                            class="enlace-detalle btn btn-primary w-100"
+                            href="#"
+                        >
                             Ver producto
                         </a>
                     </div>
@@ -364,18 +576,26 @@
             const urlDetalle =
                 `producto.html?id=${encodeURIComponent(producto.id)}`;
 
-            const imagen = columna.querySelector(".imagen-catalogo");
-            imagen.src = producto.imagen;
-            imagen.alt = producto.nombre;
+            const imagen =
+                columna.querySelector(".imagen-catalogo");
 
-            columna.querySelector(".enlace-imagen").href = urlDetalle;
-            columna.querySelector(".enlace-detalle").href = urlDetalle;
+            configurarImagen(imagen, producto);
+
+            columna.querySelector(".enlace-imagen").href =
+                urlDetalle;
+
+            columna.querySelector(".enlace-detalle").href =
+                urlDetalle;
+
             columna.querySelector(".categoria").textContent =
                 producto.categoria;
+
             columna.querySelector(".nombre-producto").textContent =
                 producto.nombre;
+
             columna.querySelector(".marca-producto").textContent =
                 producto.marca;
+
             columna.querySelector(".precio-producto").textContent =
                 formatearPrecio(producto.precio);
 
@@ -383,19 +603,23 @@
         }
 
         function mostrarProductos() {
-            const busqueda = entradaBusqueda.value
-                .trim()
-                .toLocaleLowerCase("es-CL");
+            const busqueda =
+                entradaBusqueda.value
+                    .trim()
+                    .toLocaleLowerCase("es-CL");
 
-            const categoria = filtroCategoria.value;
+            const categoria =
+                filtroCategoria.value;
 
-            const minimo = precioMinimo.value === ""
-                ? 0
-                : Number(precioMinimo.value);
+            const minimo =
+                precioMinimo.value === ""
+                    ? 0
+                    : Number(precioMinimo.value);
 
-            const maximo = precioMaximo.value === ""
-                ? Infinity
-                : Number(precioMaximo.value);
+            const maximo =
+                precioMaximo.value === ""
+                    ? Infinity
+                    : Number(precioMaximo.value);
 
             let resultados = productos.filter(producto => {
                 const textoProducto = [
@@ -407,28 +631,41 @@
                     .join(" ")
                     .toLocaleLowerCase("es-CL");
 
-                const coincideBusqueda = textoProducto.includes(busqueda);
+                const coincideBusqueda =
+                    textoProducto.includes(busqueda);
+
                 const coincideCategoria =
-                    categoria === "" || producto.categoria === categoria;
+                    categoria === "" ||
+                    producto.categoria === categoria;
 
                 const coincidePrecio =
-                    producto.precio >= minimo && producto.precio <= maximo;
+                    producto.precio >= minimo &&
+                    producto.precio <= maximo;
 
-                return coincideBusqueda &&
+                return (
+                    coincideBusqueda &&
                     coincideCategoria &&
-                    coincidePrecio;
+                    coincidePrecio
+                );
             });
 
-            // Creamos una copia para no alterar el orden de productos.js.
             resultados = [...resultados];
 
             if (ordenProductos.value === "precio-asc") {
-                resultados.sort((a, b) => a.precio - b.precio);
+                resultados.sort(
+                    (a, b) => a.precio - b.precio
+                );
             } else if (ordenProductos.value === "precio-desc") {
-                resultados.sort((a, b) => b.precio - a.precio);
+                resultados.sort(
+                    (a, b) => b.precio - a.precio
+                );
             } else if (ordenProductos.value === "nombre") {
-                resultados.sort((a, b) =>
-                    a.nombre.localeCompare(b.nombre, "es-CL")
+                resultados.sort(
+                    (a, b) =>
+                        a.nombre.localeCompare(
+                            b.nombre,
+                            "es-CL"
+                        )
                 );
             }
 
@@ -439,35 +676,63 @@
             cantidadResultados.textContent =
                 `${resultados.length} producto(s) encontrado(s)`;
 
-            mensajeSinResultados.classList.toggle(
+            sinResultados.classList.toggle(
                 "d-none",
                 resultados.length !== 0
             );
         }
 
-        formularioBusqueda.addEventListener("submit", evento => {
-            evento.preventDefault();
-            mostrarProductos();
-        });
+        formularioBusqueda.addEventListener(
+            "submit",
+            evento => {
+                evento.preventDefault();
+                mostrarProductos();
+            }
+        );
 
-        entradaBusqueda.addEventListener("input", mostrarProductos);
-        filtroCategoria.addEventListener("change", mostrarProductos);
-        precioMinimo.addEventListener("input", mostrarProductos);
-        precioMaximo.addEventListener("input", mostrarProductos);
-        ordenProductos.addEventListener("change", mostrarProductos);
+        entradaBusqueda.addEventListener(
+            "input",
+            mostrarProductos
+        );
 
-        botonLimpiar.addEventListener("click", () => {
-            entradaBusqueda.value = "";
-            filtroCategoria.value = "";
-            precioMinimo.value = "";
-            precioMaximo.value = "";
-            ordenProductos.value = "original";
+        filtroCategoria.addEventListener(
+            "change",
+            mostrarProductos
+        );
 
-            // Quita los parámetros anteriores de la URL.
-            window.history.replaceState(null, "", "catalogo.html");
+        precioMinimo.addEventListener(
+            "input",
+            mostrarProductos
+        );
 
-            mostrarProductos();
-        });
+        precioMaximo.addEventListener(
+            "input",
+            mostrarProductos
+        );
+
+        ordenProductos.addEventListener(
+            "change",
+            mostrarProductos
+        );
+
+        limpiarFiltros.addEventListener(
+            "click",
+            () => {
+                entradaBusqueda.value = "";
+                filtroCategoria.value = "";
+                precioMinimo.value = "";
+                precioMaximo.value = "";
+                ordenProductos.value = "original";
+
+                window.history.replaceState(
+                    null,
+                    "",
+                    "catalogo.html"
+                );
+
+                mostrarProductos();
+            }
+        );
 
         mostrarProductos();
     </script>
