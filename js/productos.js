@@ -1,11 +1,18 @@
+/*
+ * Datos de prueba para el frontend.
+ * El stock de 5 unidades en cada producto es SIMULADO.
+ * Reemplázalo por las cantidades reales antes de usar la tienda.
+ */
+
 const productos = [
     {
-        id: "intel-core-i5-14600kf",
+        id: 1,
         nombre: "Intel Core i5-14600KF",
         categoria: "Procesadores",
         marca: "Intel",
         modelo: "BX8071514600KF",
         precio: 264990,
+        stock: 5,
         imagen: "img/productos/Intel Core i5-14600KF/1831674_picture_1707949175.jpg",
         descripcion: "Procesador Intel Core i5-14600KF para socket LGA 1700.",
         especificaciones: {
@@ -17,12 +24,13 @@ const productos = [
         }
     },
     {
-        id: "intel-core-i7-14700k",
+        id: 2,
         nombre: "Intel Core i7-14700K",
         categoria: "Procesadores",
         marca: "Intel",
         modelo: "BX8071514700K",
         precio: 447980,
+        stock: 5,
         imagen: "img/productos/Intel Core i7-14700K/1831699_picture_1707949353.jpg",
         descripcion: "Procesador Intel Core i7-14700K para socket LGA 1700.",
         especificaciones: {
@@ -34,12 +42,13 @@ const productos = [
         }
     },
     {
-        id: "intel-core-i9-14900ks",
+        id: 3,
         nombre: "Intel Core i9-14900KS",
         categoria: "Procesadores",
         marca: "Intel",
         modelo: "BX8071514900KS",
         precio: 849000,
+        stock: 5,
         imagen: "img/productos/Intel Core i9-14900KS/1831756_picture_1707949314.jpg",
         descripcion: "Procesador Intel Core i9-14900KS para socket LGA 1700.",
         especificaciones: {
@@ -51,12 +60,13 @@ const productos = [
         }
     },
     {
-        id: "asus-dual-rx-7600-evo",
+        id: 4,
         nombre: "ASUS Dual Radeon RX 7600 EVO OC Edition 8GB GDDR6",
         categoria: "Tarjetas gráficas",
         marca: "ASUS",
         modelo: "Dual Radeon RX 7600 EVO OC Edition",
         precio: 318870,
+        stock: 5,
         imagen: "img/productos/ASUS Dual Radeon RX 7600 EVO OC Edition 8GB GDDR6/2055806_picture_1743427648.webp",
         descripcion: "Tarjeta gráfica ASUS Dual Radeon RX 7600 EVO OC Edition con 8 GB GDDR6.",
         especificaciones: {
@@ -68,12 +78,13 @@ const productos = [
         }
     },
     {
-        id: "asus-prime-rx-9070-xt",
+        id: 5,
         nombre: "ASUS Prime Radeon RX 9070 XT OC Edition 16GB",
         categoria: "Tarjetas gráficas",
         marca: "ASUS",
         modelo: "Prime Radeon RX 9070 XT OC Edition",
         precio: 847990,
+        stock: 5,
         imagen: "img/productos/ASUS Prime Radeon RX 9070 XT OC Edition 16GB/2087610_picture_1747988354.jpg",
         descripcion: "Tarjeta gráfica ASUS Prime Radeon RX 9070 XT OC Edition con 16 GB GDDR6.",
         especificaciones: {
@@ -85,12 +96,13 @@ const productos = [
         }
     },
     {
-        id: "gigabyte-rtx-5090-gaming-oc",
+        id: 6,
         nombre: "Gigabyte GeForce RTX 5090 GAMING OC 32G",
         categoria: "Tarjetas gráficas",
         marca: "Gigabyte",
         modelo: "GAMING OC 32G",
         precio: 4289995,
+        stock: 5,
         imagen: "img/productos/Gigabyte GeForce RTX 5090 GAMING OC 32G/2057307_picture_1743591149.webp",
         descripcion: "Tarjeta gráfica Gigabyte GeForce RTX 5090 GAMING OC con 32 GB GDDR7.",
         especificaciones: {
@@ -102,12 +114,13 @@ const productos = [
         }
     },
     {
-        id: "msi-rtx-5070-ti-gaming-trio",
+        id: 7,
         nombre: "MSI GeForce RTX 5070 Ti 16G GAMING TRIO OC",
         categoria: "Tarjetas gráficas",
         marca: "MSI",
         modelo: "G507T-16GTC",
         precio: 1199900,
+        stock: 5,
         imagen: "img/productos/MSI GeForce RTX 5070 Ti 16G GAMING TRIO OC/2545160_picture_1757411992.png",
         descripcion: "Tarjeta gráfica MSI GeForce RTX 5070 Ti GAMING TRIO OC con 16 GB GDDR7.",
         especificaciones: {
@@ -119,13 +132,14 @@ const productos = [
         }
     },
     {
-        id: "adata-xpg-lancer-blade-rgb-8gb",
+        id: 8,
         nombre: "A-DATA XPG Lancer Blade RGB (1 × 8 GB DDR5-5600)",
         categoria: "Memorias RAM",
         marca: "A-DATA",
         modelo: "AX5U5600C46BG-SLABRK",
         precio: 125000,
-        imagen: "img/productos/A-DATA XPG Lancer Blade RGB (1 x 8 GB DIMM DDR5-5600)/1926060_picture_1718382530.jpg",
+        stock: 5,
+        imagen: "img/productos/A-DATA XPG Lancer Blade RGB (1 x 8 GB  DIMM DDR5-5600)/1926060_picture_1718382530.jpg",
         descripcion: "Módulo de memoria A-DATA XPG Lancer Blade RGB DDR5 de 8 GB.",
         especificaciones: {
             "Capacidad": "1 × 8 GB",
@@ -136,13 +150,14 @@ const productos = [
         }
     },
     {
-        id: "kingston-fury-beast-16gb",
+        id: 9,
         nombre: "Kingston Fury Beast (1 × 16 GB DDR5-6400)",
         categoria: "Memorias RAM",
         marca: "Kingston",
         modelo: "KF564C32BBE-16",
         precio: 301990,
-        imagen: "img/productos/Kingston Fury Beast (1 x 16 GB DIMM DDR5-6400)/1962332_picture_1733757849.jpg",
+        stock: 5,
+        imagen: "img/productos/Kingston Fury Beast (1 x 16 GB  DIMM DDR5-6400)/1962332_picture_1733757849.jpg",
         descripcion: "Módulo de memoria Kingston Fury Beast DDR5 de 16 GB.",
         especificaciones: {
             "Capacidad": "1 × 16 GB",
@@ -153,12 +168,13 @@ const productos = [
         }
     },
     {
-        id: "kingston-nv3-1tb",
+        id: 10,
         nombre: "Kingston NV3 1 TB",
         categoria: "Almacenamiento",
         marca: "Kingston",
         modelo: "SNV3S/1000G",
         precio: 152290,
+        stock: 5,
         imagen: "img/productos/Kingston NV3 1 TB/1948236_picture_1724531834.jpg",
         descripcion: "Unidad de estado sólido Kingston NV3 de 1 TB, formato M.2 2280.",
         especificaciones: {
@@ -170,12 +186,13 @@ const productos = [
         }
     },
     {
-        id: "transcend-512gb",
+        id: 11,
         nombre: "Transcend 512 GB",
         categoria: "Almacenamiento",
         marca: "Transcend",
         modelo: "TS512GMTE712A-VS1",
         precio: 75990,
+        stock: 5,
         imagen: "img/productos/Transcend 512 GB/2334322.png",
         descripcion: "Unidad de estado sólido Transcend de 512 GB, formato M.2 2280.",
         especificaciones: {
@@ -187,12 +204,13 @@ const productos = [
         }
     },
     {
-        id: "cougar-fv150-rgb-white",
+        id: 12,
         nombre: "Cougar FV150 RGB - White",
         categoria: "Gabinetes",
         marca: "Cougar",
         modelo: "385KA10.0002",
         precio: 66990,
+        stock: 5,
         imagen: "img/productos/Cougar FV150 RGB - White/1970623_picture_1729359313.jpg",
         descripcion: "Gabinete Cougar FV150 RGB blanco con panel lateral de vidrio templado.",
         especificaciones: {
@@ -205,12 +223,13 @@ const productos = [
         }
     },
     {
-        id: "xyz-neutron-x-pro-black",
+        id: 13,
         nombre: "XYZ Neutron X Pro - Black",
         categoria: "Gabinetes",
         marca: "XYZ",
         modelo: "X-CS-NEUTRONXP-B",
         precio: 149995,
+        stock: 5,
         imagen: "img/productos/XYZ Neutron X Pro - Black/2795960_picture_1784556386.jpg",
         descripcion: "Gabinete XYZ Neutron X Pro negro con panel lateral de vidrio templado.",
         especificaciones: {
@@ -223,12 +242,13 @@ const productos = [
         }
     },
     {
-        id: "asus-prime-850w-gold",
+        id: 14,
         nombre: "ASUS Prime 850W Gold",
         categoria: "Fuentes de poder",
         marca: "ASUS",
         modelo: "AP-850G / 90YE000U-B0AA00",
         precio: 97990,
+        stock: 5,
         imagen: "img/productos/ASUS Prime 850W Gold/1959832_picture_1726393017.jpg",
         descripcion: "Fuente de poder ASUS Prime 850W Gold modular.",
         especificaciones: {
@@ -240,12 +260,13 @@ const productos = [
         }
     },
     {
-        id: "corsair-rm750e-2025",
+        id: 15,
         nombre: "Corsair RMe Series RM750e 2025",
         categoria: "Fuentes de poder",
         marca: "Corsair",
         modelo: "CP-9020295-NA",
         precio: 99990,
+        stock: 5,
         imagen: "img/productos/Corsair RMe Series RM750e 2025/2018728_picture_1739543341.jpg",
         descripcion: "Fuente de poder Corsair RMe Series RM750e 2025 modular.",
         especificaciones: {
