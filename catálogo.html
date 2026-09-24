@@ -449,8 +449,10 @@
 
     <!-- Debe cargarse antes del código que utiliza `productos` -->
     <script src="js/productos.js"></script>
+    <script src="js/catalogo-datos.js"></script>
 
     <script>
+        const catalogoActual = obtenerCatalogo();
         const contenedor = document.getElementById("contenedorProductos");
         const cantidadResultados =
             document.getElementById("cantidadResultados");
@@ -621,7 +623,7 @@
                     ? Infinity
                     : Number(precioMaximo.value);
 
-            let resultados = productos.filter(producto => {
+            let resultados = catalogoActual.filter(producto => {
                 const textoProducto = [
                     producto.nombre,
                     producto.marca,

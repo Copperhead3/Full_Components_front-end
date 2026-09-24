@@ -27,7 +27,7 @@
 
                 <!-- Logo -->
 
-                <a class="navbar-brand d-flex align-items-center" href="#">
+                <a class="navbar-brand d-flex align-items-center" href="index.html" aria-label="Ir a la página principal">
                     <span class="logo-icon">▣</span>
                 
                     <!-- Nombre abreviado para móvil -->
@@ -307,6 +307,7 @@
             <!-- Comprobar si es el administrador -->
             if (email === ADMIN.email && password === ADMIN.password) {
                 mostrarMensaje("¡Bienvenido/a, Administrador!", "exito");
+                sessionStorage.setItem("rolActivo", "admin");
                 setTimeout(function () {
                     window.location.href = "admin.html";
                 }, 1200);
