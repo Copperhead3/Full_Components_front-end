@@ -6,97 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo | FullComponents Store</title>
 
-    <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-    >
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+    <link href="css/catalogostyle.css" rel="stylesheet">
 
-    <style>
-        body {
-            background-color: #f5f6f8;
-        }
-
-        /* Ajustes de la barra superior para pantallas pequeñas */
-        .barra-superior-contenido {
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-
-        .barra-superior-contenido .buscador {
-            min-width: 180px;
-            margin-left: 0 !important;
-            margin-right: 0 !important;
-        }
-
-        .panel-filtros,
-        .tarjeta-producto {
-            background-color: #fff;
-            border: 1px solid #e9ecef;
-            border-radius: 12px;
-        }
-
-        .tarjeta-producto {
-            overflow: hidden;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .tarjeta-producto:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.10);
-        }
-
-        .enlace-imagen {
-            display: block;
-            background-color: #fff;
-        }
-
-        .imagen-catalogo {
-            display: block;
-            width: 100%;
-            height: 220px;
-            object-fit: contain;
-            padding: 18px;
-        }
-
-        .nombre-producto {
-            font-size: 1.05rem;
-            line-height: 1.4;
-        }
-
-        .precio-producto {
-            color: #dc3545;
-            font-size: 1.4rem;
-            font-weight: 700;
-        }
-
-        @media (max-width: 767px) {
-            .barra-superior-contenido .navbar-brand {
-                margin-right: auto;
-            }
-
-            .barra-superior-contenido .nav-opciones {
-                order: 2;
-            }
-
-            .barra-superior-contenido .buscador {
-                order: 3;
-                flex-basis: 100%;
-            }
-
-            .imagen-catalogo {
-                height: 190px;
-            }
-        }
-
-        @media (max-width: 575px) {
-            .tarjeta-producto .card-body-personalizado {
-                padding: 14px;
-            }
-        }
-    </style>
+    
 </head>
 
 <body>
