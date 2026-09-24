@@ -26,8 +26,8 @@
             <div class="container-fluid px-4">
 
                 <!-- Logo -->
+                <a class="navbar-brand d-flex align-items-center" href="index.html" aria-label="Ir a la página principal">
 
-                <a class="navbar-brand d-flex align-items-center" href="#">
                     <span class="logo-icon">▣</span>
                 
                     <!-- Nombre abreviado para móvil -->
@@ -56,7 +56,7 @@
         <div class="nav-opciones d-flex align-items-center">
 
              <!-- Iniciar sesión -->
-             <a href="#"
+             <a href="login.html"
              class="nav-link text-white me-4"
               aria-label="Iniciar sesión"
              title="Iniciar sesión">
@@ -65,7 +65,7 @@
              </a>
 
               <!-- Carrito -->
-              <a href="#"
+              <a href="carrito.html"
               class="nav-link text-white carrito"
                aria-label="Ver carrito"
                title="Ver carrito">
@@ -307,6 +307,7 @@
             <!-- Comprobar si es el administrador -->
             if (email === ADMIN.email && password === ADMIN.password) {
                 mostrarMensaje("¡Bienvenido/a, Administrador!", "exito");
+                sessionStorage.setItem("rolActivo", "admin");
                 setTimeout(function () {
                     window.location.href = "admin.html";
                 }, 1200);
