@@ -6,145 +6,215 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo | FullComponents Store</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
     <link href="css/style.css" rel="stylesheet">
     <link href="css/catalogostyle.css" rel="stylesheet">
-
-    
 </head>
 
 <body>
 
     <header>
-         <!-- Barra superior -->
+        <!-- Barra superior -->
         <nav class="navbar navbar-dark navbar-principal">
-            <div class="container-fluid px-4">
-                <!-- Logo -->
-                <a class="navbar-brand d-flex align-items-center" href="index.html" aria-label="Ir a la página principal">
+            <div class="container-fluid px-4 barra-superior-contenido">
+
+                <a
+                    class="navbar-brand d-flex align-items-center"
+                    href="index.html"
+                    aria-label="Ir a la página principal"
+                >
                     <span class="logo-icon">▣</span>
 
-                    <!-- Nombre abreviado para móvil -->
                     <span class="logo-text-mobile ms-2 d-md-none">
                         FC Store
                     </span>
 
-                    <!-- Nombre completo para tablet y computador -->
                     <div class="ms-2 d-none d-md-block">
-                        <span class="logo-text">FullComponents Store</span>
+                        <span class="logo-text">
+                            FullComponents Store
+                        </span>
                         <small class="d-block logo-subtitle">
                             Componentes para grandes ideas
                         </small>
                     </div>
                 </a>
-                <!-- Buscador -->
-                <form class="d-flex buscador mx-4 flex-grow-1" role="search">
-                    <input class="form-control" type="search" placeholder="Buscar productos, marcas o categorías..."
-                        aria-label="Buscar">
-                    <button class="btn btn-buscar" type="submit">
+
+                <!-- Estos IDs son necesarios para el JavaScript -->
+                <form
+                    id="formularioBusqueda"
+                    class="d-flex buscador flex-grow-1"
+                    role="search"
+                >
+                    <input
+                        id="busqueda"
+                        class="form-control"
+                        type="search"
+                        name="q"
+                        placeholder="Buscar productos, marcas o categorías..."
+                        aria-label="Buscar productos"
+                    >
+
+                    <button
+                        class="btn btn-buscar"
+                        type="submit"
+                        aria-label="Buscar"
+                    >
                         🔍
                     </button>
                 </form>
-                <!-- Usuario y carrito -->
-                <div class="nav-opciones d-flex align-items-center">
 
-                    <!-- Iniciar sesión -->
-                    <a href="login.html" class="nav-link text-white me-4" aria-label="Iniciar sesión" title="Iniciar sesión">
+                <div class="nav-opciones d-flex align-items-center">
+                    <a
+                        href="login.html"
+                        class="nav-link text-white me-4"
+                        aria-label="Iniciar sesión"
+                        title="Iniciar sesión"
+                    >
                         👤
-                        <span class="d-none d-md-inline">Iniciar sesión</span>
+                        <span class="d-none d-md-inline">
+                            Iniciar sesión
+                        </span>
                     </a>
 
-                    <!-- Carrito -->
-                    <a href="carrito.html" class="nav-link text-white carrito me-4" aria-label="Ver carrito" title="Ver carrito">
+                    <a
+                        href="carrito.html"
+                        class="nav-link text-white carrito me-4"
+                        aria-label="Ver carrito"
+                        title="Ver carrito"
+                    >
                         🛒
-                        <span class="d-none d-md-inline">Carrito</span>
+                        <span class="d-none d-md-inline">
+                            Carrito
+                        </span>
                         <span class="badge rounded-pill">0</span>
                     </a>
-
                 </div>
+
             </div>
         </nav>
-        <!-- Segunda barra de navegación -->
+
+        <!-- Segunda barra -->
         <nav class="navbar navbar-expand-lg navbar-dark navbar-secundaria">
             <div class="container">
-                <!-- Botón responsive -->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal"
-                    aria-controls="menuPrincipal" aria-expanded="false" aria-label="Mostrar navegación">
+
+                <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#menuPrincipal"
+                    aria-controls="menuPrincipal"
+                    aria-expanded="false"
+                    aria-label="Mostrar navegación"
+                >
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="menuPrincipal">
-                    <!-- Categorías -->
+
+                <div
+                    class="collapse navbar-collapse"
+                    id="menuPrincipal"
+                >
                     <div class="dropdown">
-                        <button class="btn btn-categorias dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
+                        <button
+                            class="btn btn-categorias dropdown-toggle"
+                            type="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                        >
                             ☰ Todas las categorías
                         </button>
+
                         <ul class="dropdown-menu">
                             <li>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="catálogo.html">
+                                    Todos los productos
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    class="dropdown-item"
+                                    href="catálogo.html?categoria=Procesadores"
+                                >
                                     Procesadores
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="#">
+                                <a
+                                    class="dropdown-item"
+                                    href="catálogo.html?categoria=Tarjetas%20gr%C3%A1ficas"
+                                >
                                     Tarjetas gráficas
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="#">
-                                    Placas madre
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#">
+                                <a
+                                    class="dropdown-item"
+                                    href="catálogo.html?categoria=Memorias%20RAM"
+                                >
                                     Memorias RAM
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="#">
+                                <a
+                                    class="dropdown-item"
+                                    href="catálogo.html?categoria=Almacenamiento"
+                                >
                                     Almacenamiento
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="#">
+                                <a
+                                    class="dropdown-item"
+                                    href="catálogo.html?categoria=Fuentes%20de%20poder"
+                                >
                                     Fuentes de poder
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="#">
+                                <a
+                                    class="dropdown-item"
+                                    href="catálogo.html?categoria=Gabinetes"
+                                >
                                     Gabinetes
                                 </a>
                             </li>
                         </ul>
                     </div>
-                    <!-- Menú principal -->
-                    <ul class="navbar-nav ms-4">
+
+                    <ul class="navbar-nav ms-lg-4">
                         <li class="nav-item">
-                            <a class="nav-link active" href="index.html">
+                            <a class="nav-link" href="index.html">
                                 Inicio
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a
+                                class="nav-link active"
+                                href="catálogo.html"
+                                aria-current="page"
+                            >
                                 Categorías
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="index.html#ofertas">
                                 Ofertas
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="index.html#novedades">
                                 Novedades
                             </a>
                         </li>
                     </ul>
                 </div>
+
             </div>
         </nav>
     </header>
 
-    <!-- Aquí empieza el catálogo; no hay carrusel en esta página -->
     <main class="container py-4 py-md-5">
 
         <div class="mb-4">
@@ -284,38 +354,45 @@
         </div>
     </main>
 
-    <!-- Debe cargarse antes del código que utiliza `productos` -->
+    <!-- Solo necesitamos productos.js; no catalogo-datos.js -->
     <script src="js/productos.js"></script>
-    <script src="js/catalogo-datos.js"></script>
 
     <script>
-        const catalogoActual = obtenerCatalogo();
-        const contenedor = document.getElementById("contenedorProductos");
+        const contenedor =
+            document.getElementById("contenedorProductos");
+
         const cantidadResultados =
             document.getElementById("cantidadResultados");
+
         const sinResultados =
             document.getElementById("sinResultados");
 
         const formularioBusqueda =
             document.getElementById("formularioBusqueda");
+
         const entradaBusqueda =
             document.getElementById("busqueda");
 
         const filtroCategoria =
             document.getElementById("filtroCategoria");
+
         const precioMinimo =
             document.getElementById("precioMinimo");
+
         const precioMaximo =
             document.getElementById("precioMaximo");
+
         const ordenProductos =
             document.getElementById("ordenProductos");
+
         const limpiarFiltros =
             document.getElementById("limpiarFiltros");
 
         const parametros =
             new URLSearchParams(window.location.search);
 
-        entradaBusqueda.value = parametros.get("q") || "";
+        entradaBusqueda.value =
+            parametros.get("q") || "";
 
         const categoriaInicial =
             parametros.get("categoria") || "";
@@ -337,28 +414,26 @@
         }
 
         /*
-         * En la captura, los nombres de las carpetas de estas dos RAM
-         * podrían contener uno o dos espacios entre GB y DIMM.
-         * Probamos ambas rutas para que la tarjeta encuentre la foto.
+         * Los productos 8 y 9 son las dos memorias RAM.
+         * Probamos ambas variantes de espacios en sus carpetas.
          */
         function posiblesRutasImagen(producto) {
             const rutas = [producto.imagen];
 
-            if (producto.id === "adata-xpg-lancer-blade-rgb-8gb") {
+            if (producto.id === 8) {
                 rutas.push(
                     "img/productos/A-DATA XPG Lancer Blade RGB (1 x 8 GB  DIMM DDR5-5600)/1926060_picture_1718382530.jpg",
                     "img/productos/A-DATA XPG Lancer Blade RGB (1 x 8 GB DIMM DDR5-5600)/1926060_picture_1718382530.jpg"
                 );
             }
 
-            if (producto.id === "kingston-fury-beast-16gb") {
+            if (producto.id === 9) {
                 rutas.push(
                     "img/productos/Kingston Fury Beast (1 x 16 GB  DIMM DDR5-6400)/1962332_picture_1733757849.jpg",
                     "img/productos/Kingston Fury Beast (1 x 16 GB DIMM DDR5-6400)/1962332_picture_1733757849.jpg"
                 );
             }
 
-            // Evita intentar la misma ruta dos veces.
             return [...new Set(rutas)];
         }
 
@@ -460,7 +535,7 @@
                     ? Infinity
                     : Number(precioMaximo.value);
 
-            let resultados = catalogoActual.filter(producto => {
+            let resultados = productos.filter(producto => {
                 const textoProducto = [
                     producto.nombre,
                     producto.marca,
@@ -566,7 +641,7 @@
                 window.history.replaceState(
                     null,
                     "",
-                    "catalogo.html"
+                    "catálogo.html"
                 );
 
                 mostrarProductos();
