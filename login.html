@@ -45,11 +45,13 @@
                     </div>
                 </a>
 
-                <!-- Buscador -->
-                <form class="d-flex buscador mx-4 flex-grow-1" role="search">
-                    <input class="form-control" type="search" placeholder="Buscar productos, marcas o categorías..."
-                        aria-label="Buscar">
-                    <button class="btn btn-buscar" type="submit">🔍</button>
+                <form class="d-flex buscador flex-grow-1" role="search" action="catálogo.html" method="GET">
+                    <input class="form-control" type="search" name="q"
+                        placeholder="Buscar productos, marcas o categorías..." aria-label="Buscar productos" required>
+
+                    <button class="btn btn-buscar" type="submit">
+                        🔍
+                    </button>
                 </form>
 
                 <!-- Usuario -->
@@ -93,12 +95,18 @@
                         </button>
 
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="catálogo.html?categoria=Procesadores">Procesadores</a></li>
-                            <li><a class="dropdown-item" href="catálogo.html?categoria=Tarjetas%20gr%C3%A1ficas">Tarjetas gráficas</a></li>
-                            <li><a class="dropdown-item" href="catálogo.html?categoria=Memorias%20RAM">Placas madre</a></li>
-                            <li><a class="dropdown-item" href="catálogo.html?categoria=Memorias%20RAM">Memorias RAM</a></li>
-                            <li><a class="dropdown-item" href="catálogo.html?categoria=Almacenamiento">Almacenamiento</a></li>
-                            <li><a class="dropdown-item" href="catálogo.html?categoria=Fuentes%20de%20poder">Fuentes de poder</a></li>
+                            <li><a class="dropdown-item" href="catálogo.html?categoria=Procesadores">Procesadores</a>
+                            </li>
+                            <li><a class="dropdown-item"
+                                    href="catálogo.html?categoria=Tarjetas%20gr%C3%A1ficas">Tarjetas gráficas</a></li>
+                            <li><a class="dropdown-item" href="catálogo.html?categoria=Memorias%20RAM">Placas madre</a>
+                            </li>
+                            <li><a class="dropdown-item" href="catálogo.html?categoria=Memorias%20RAM">Memorias RAM</a>
+                            </li>
+                            <li><a class="dropdown-item"
+                                    href="catálogo.html?categoria=Almacenamiento">Almacenamiento</a></li>
+                            <li><a class="dropdown-item" href="catálogo.html?categoria=Fuentes%20de%20poder">Fuentes de
+                                    poder</a></li>
                             <li><a class="dropdown-item" href="catálogo.html?categoria=Gabinetes">Gabinetes</a></li>
                         </ul>
                     </div>

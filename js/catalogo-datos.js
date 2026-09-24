@@ -32,3 +32,4 @@ function guardarCatalogo(lista) {
 function restablecerCatalogo() {
     localStorage.removeItem(CLAVE_CATALOGO);
 }
+
