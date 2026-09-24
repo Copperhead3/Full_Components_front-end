@@ -280,7 +280,7 @@
                 mostrarLogin.click();
             }, 1500);
         });
-        <!-- Cuenta de administrador -->
+        //Cuenta de administrador//
         const ADMIN = {
             email: "admin@fullcomponents.cl",
             password: "admin123"
@@ -292,7 +292,7 @@
             const email = document.getElementById("loginEmail").value.trim();
             const password = document.getElementById("loginPassword").value;
 
-            <!-- Comprobar si es el administrador -->
+            //Comprobar si es el administrador//
             if (email === ADMIN.email && password === ADMIN.password) {
                 mostrarMensaje("¡Bienvenido/a, Administrador!", "exito");
                 sessionStorage.setItem("rolActivo", "admin");
