@@ -630,13 +630,27 @@ CORRECCIÓN IMÁGENES CATEGORÍAS
     border: 1px solid #28415A;
     border-radius: 12px;
 
+    /* NUEVO */
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+
     transition: 0.2s ease;
 }
 
 .tarjeta-oferta:hover {
     transform: translateY(-4px);
     border-color: var(--azul-claro);
+
+    /* NUEVO */
+    text-decoration: none;
 }
+
+.tarjeta-oferta:focus-visible {
+    outline: 3px solid var(--azul-claro);
+    outline-offset: 3px;
+}
+
 
 /* Descuento */
 
