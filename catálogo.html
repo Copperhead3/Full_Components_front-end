@@ -11,92 +11,7 @@
         rel="stylesheet"
     >
     <link href="css/style.css" rel="stylesheet">
-
-    <style>
-        body {
-            background-color: #f5f6f8;
-        }
-
-        /* Ajustes de la barra superior para pantallas pequeñas */
-        .barra-superior-contenido {
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-
-        .barra-superior-contenido .buscador {
-            min-width: 180px;
-            margin-left: 0 !important;
-            margin-right: 0 !important;
-        }
-
-        .panel-filtros,
-        .tarjeta-producto {
-            background-color: #fff;
-            border: 1px solid #e9ecef;
-            border-radius: 12px;
-        }
-
-        .tarjeta-producto {
-            overflow: hidden;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .tarjeta-producto:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.10);
-        }
-
-        .enlace-imagen {
-            display: block;
-            background-color: #fff;
-        }
-
-        .imagen-catalogo {
-            display: block;
-            width: 100%;
-            height: 220px;
-            object-fit: contain;
-            padding: 18px;
-        }
-
-        .nombre-producto {
-            font-size: 1.05rem;
-            line-height: 1.4;
-        }
-
-        .precio-producto {
-            color: #dc3545;
-            font-size: 1.4rem;
-            font-weight: 700;
-        }
-
-        @media (max-width: 767px) {
-            .barra-superior-contenido .navbar-brand {
-                margin-right: auto;
-            }
-
-            .barra-superior-contenido .nav-opciones {
-                order: 2;
-            }
-
-            .barra-superior-contenido .buscador {
-                order: 3;
-                flex-basis: 100%;
-            }
-
-            .imagen-catalogo {
-                height: 190px;
-            }
-        }
-
-        @media (max-width: 575px) {
-            .tarjeta-producto .card-body-personalizado {
-                padding: 14px;
-            }
-        }
-    </style>
+    <link href="css/catalogostyle.css" rel="stylesheet">
 </head>
 
 <body>
@@ -106,10 +21,10 @@
         <nav class="navbar navbar-dark navbar-principal">
             <div class="container-fluid px-4 barra-superior-contenido">
 
-                <!-- Logo: vuelve al inicio -->
                 <a
                     class="navbar-brand d-flex align-items-center"
                     href="index.html"
+                    aria-label="Ir a la página principal"
                 >
                     <span class="logo-icon">▣</span>
 
@@ -127,7 +42,7 @@
                     </div>
                 </a>
 
-                <!-- Buscador del catálogo -->
+                <!-- Estos IDs son necesarios para el JavaScript -->
                 <form
                     id="formularioBusqueda"
                     class="d-flex buscador flex-grow-1"
@@ -151,10 +66,9 @@
                     </button>
                 </form>
 
-                <!-- Usuario y carrito -->
                 <div class="nav-opciones d-flex align-items-center">
                     <a
-                        href="#"
+                        href="login.html"
                         class="nav-link text-white me-4"
                         aria-label="Iniciar sesión"
                         title="Iniciar sesión"
@@ -166,8 +80,8 @@
                     </a>
 
                     <a
-                        href="#"
-                        class="nav-link text-white carrito"
+                        href="carrito.html"
+                        class="nav-link text-white carrito me-4"
                         aria-label="Ver carrito"
                         title="Ver carrito"
                     >
@@ -182,7 +96,7 @@
             </div>
         </nav>
 
-        <!-- Segunda barra de navegación -->
+        <!-- Segunda barra -->
         <nav class="navbar navbar-expand-lg navbar-dark navbar-secundaria">
             <div class="container">
 
@@ -214,17 +128,14 @@
 
                         <ul class="dropdown-menu">
                             <li>
-                                <a
-                                    class="dropdown-item"
-                                    href="catalogo.html"
-                                >
+                                <a class="dropdown-item" href="catálogo.html">
                                     Todos los productos
                                 </a>
                             </li>
                             <li>
                                 <a
                                     class="dropdown-item"
-                                    href="catalogo.html?categoria=Procesadores"
+                                    href="catálogo.html?categoria=Procesadores"
                                 >
                                     Procesadores
                                 </a>
@@ -232,7 +143,7 @@
                             <li>
                                 <a
                                     class="dropdown-item"
-                                    href="catalogo.html?categoria=Tarjetas%20gr%C3%A1ficas"
+                                    href="catálogo.html?categoria=Tarjetas%20gr%C3%A1ficas"
                                 >
                                     Tarjetas gráficas
                                 </a>
@@ -240,7 +151,7 @@
                             <li>
                                 <a
                                     class="dropdown-item"
-                                    href="catalogo.html?categoria=Memorias%20RAM"
+                                    href="catálogo.html?categoria=Memorias%20RAM"
                                 >
                                     Memorias RAM
                                 </a>
@@ -248,7 +159,7 @@
                             <li>
                                 <a
                                     class="dropdown-item"
-                                    href="catalogo.html?categoria=Almacenamiento"
+                                    href="catálogo.html?categoria=Almacenamiento"
                                 >
                                     Almacenamiento
                                 </a>
@@ -256,7 +167,7 @@
                             <li>
                                 <a
                                     class="dropdown-item"
-                                    href="catalogo.html?categoria=Fuentes%20de%20poder"
+                                    href="catálogo.html?categoria=Fuentes%20de%20poder"
                                 >
                                     Fuentes de poder
                                 </a>
@@ -264,7 +175,7 @@
                             <li>
                                 <a
                                     class="dropdown-item"
-                                    href="catalogo.html?categoria=Gabinetes"
+                                    href="catálogo.html?categoria=Gabinetes"
                                 >
                                     Gabinetes
                                 </a>
@@ -278,23 +189,20 @@
                                 Inicio
                             </a>
                         </li>
-
                         <li class="nav-item">
                             <a
                                 class="nav-link active"
-                                href="catalogo.html"
+                                href="catálogo.html"
                                 aria-current="page"
                             >
                                 Categorías
                             </a>
                         </li>
-
                         <li class="nav-item">
                             <a class="nav-link" href="index.html#ofertas">
                                 Ofertas
                             </a>
                         </li>
-
                         <li class="nav-item">
                             <a class="nav-link" href="index.html#novedades">
                                 Novedades
@@ -307,7 +215,6 @@
         </nav>
     </header>
 
-    <!-- Aquí empieza el catálogo; no hay carrusel en esta página -->
     <main class="container py-4 py-md-5">
 
         <div class="mb-4">
@@ -447,36 +354,45 @@
         </div>
     </main>
 
-    <!-- Debe cargarse antes del código que utiliza `productos` -->
+    <!-- Solo necesitamos productos.js; no catalogo-datos.js -->
     <script src="js/productos.js"></script>
 
     <script>
-        const contenedor = document.getElementById("contenedorProductos");
+        const contenedor =
+            document.getElementById("contenedorProductos");
+
         const cantidadResultados =
             document.getElementById("cantidadResultados");
+
         const sinResultados =
             document.getElementById("sinResultados");
 
         const formularioBusqueda =
             document.getElementById("formularioBusqueda");
+
         const entradaBusqueda =
             document.getElementById("busqueda");
 
         const filtroCategoria =
             document.getElementById("filtroCategoria");
+
         const precioMinimo =
             document.getElementById("precioMinimo");
+
         const precioMaximo =
             document.getElementById("precioMaximo");
+
         const ordenProductos =
             document.getElementById("ordenProductos");
+
         const limpiarFiltros =
             document.getElementById("limpiarFiltros");
 
         const parametros =
             new URLSearchParams(window.location.search);
 
-        entradaBusqueda.value = parametros.get("q") || "";
+        entradaBusqueda.value =
+            parametros.get("q") || "";
 
         const categoriaInicial =
             parametros.get("categoria") || "";
@@ -498,28 +414,26 @@
         }
 
         /*
-         * En la captura, los nombres de las carpetas de estas dos RAM
-         * podrían contener uno o dos espacios entre GB y DIMM.
-         * Probamos ambas rutas para que la tarjeta encuentre la foto.
+         * Los productos 8 y 9 son las dos memorias RAM.
+         * Probamos ambas variantes de espacios en sus carpetas.
          */
         function posiblesRutasImagen(producto) {
             const rutas = [producto.imagen];
 
-            if (producto.id === "adata-xpg-lancer-blade-rgb-8gb") {
+            if (producto.id === 8) {
                 rutas.push(
                     "img/productos/A-DATA XPG Lancer Blade RGB (1 x 8 GB  DIMM DDR5-5600)/1926060_picture_1718382530.jpg",
                     "img/productos/A-DATA XPG Lancer Blade RGB (1 x 8 GB DIMM DDR5-5600)/1926060_picture_1718382530.jpg"
                 );
             }
 
-            if (producto.id === "kingston-fury-beast-16gb") {
+            if (producto.id === 9) {
                 rutas.push(
                     "img/productos/Kingston Fury Beast (1 x 16 GB  DIMM DDR5-6400)/1962332_picture_1733757849.jpg",
                     "img/productos/Kingston Fury Beast (1 x 16 GB DIMM DDR5-6400)/1962332_picture_1733757849.jpg"
                 );
             }
 
-            // Evita intentar la misma ruta dos veces.
             return [...new Set(rutas)];
         }
 
@@ -727,7 +641,7 @@
                 window.history.replaceState(
                     null,
                     "",
-                    "catalogo.html"
+                    "catálogo.html"
                 );
 
                 mostrarProductos();

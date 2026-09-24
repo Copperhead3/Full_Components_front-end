@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de administración | FullComponents Store</title>
+
+    <!-- Si nadie inició sesión como admin, lo mandamos al login de una vez -->
+    <script>
+        if (sessionStorage.getItem("rolActivo") !== "admin") {
+            window.location.href = "login.html";
+        }
+    </script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/admin.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+    <header>
+        <nav class="navbar navbar-dark navbar-principal">
+            <div class="container-fluid px-4 d-flex justify-content-between align-items-center flex-wrap gap-2">
+
+                <a class="navbar-brand d-flex align-items-center" href="index.html">
+                    <span class="logo-icon">▣</span>
+                    <div class="ms-2">
+                        <span class="logo-text">FullComponents Store</span>
+                        <small class="d-block logo-subtitle">Panel de administración</small>
+                    </div>
+                </a>
+
+                <div class="d-flex align-items-center gap-2">
+                    <a href="index.html" class="btn btn-outline-light btn-sm">Volver a la tienda</a>
+                    <button id="cerrarSesion" type="button" class="btn btn-light btn-sm">Cerrar sesión</button>
+                </div>
+
+            </div>
+        </nav>
+    </header>
+
+    <!-- =========================
+         CONTENIDO
+    ========================== -->
+    <main class="admin-page">
+        <div class="container-fluid">
+
+            <div class="admin-header">
+                <div>
+                    <h1>Productos del catálogo</h1>
+                    <p>Edita el precio, las especificaciones o elimina productos.</p>
+                </div>
+
+                <button id="btnRestablecer" type="button" class="btn btn-outline-secondary btn-sm">
+                    Restablecer catálogo original
+                </button>
+            </div>
+
+            <div id="mensajeAdmin" aria-live="polite"></div>
+
+            <div class="table-responsive admin-tabla-wrap shadow-sm">
+                <table class="table admin-tabla mb-0">
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Categoría</th>
+                            <th>Precio</th>
+                            <th>Stock</th>
+                            <th class="text-end">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cuerpoTabla"></tbody>
+                </table>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="admin-footer">
+        <p>© 2026 FullComponents Store - Panel de administración</p>
+    </footer>
+
+    <!-- =========================
+         MODAL: EDITAR PRODUCTO
+    ========================== -->
+    <div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="tituloModalEditar" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h2 class="modal-title fs-5" id="tituloModalEditar">Editar producto</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+
+                <div class="modal-body">
+                    <form id="formEditar">
+                        <input type="hidden" id="editId">
+
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="editNombre" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="editNombre" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="editCategoria" class="form-label">Categoría</label>
+                                <input type="text" class="form-control" id="editCategoria" list="listaCategorias" required>
+                                <datalist id="listaCategorias"></datalist>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="editMarca" class="form-label">Marca</label>
+                                <input type="text" class="form-control" id="editMarca">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="editModelo" class="form-label">Modelo</label>
+                                <input type="text" class="form-control" id="editModelo">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="editPrecio" class="form-label">Precio (CLP)</label>
+                                <input type="number" min="0" class="form-control" id="editPrecio" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="editStock" class="form-label">Stock</label>
+                                <input type="number" min="0" class="form-control" id="editStock" required>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="editDescripcion" class="form-label">Descripción</label>
+                                <textarea class="form-control" id="editDescripcion" rows="2"></textarea>
+                            </div>
+                        </div>
+
+                        <hr class="my-3">
+
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <label class="form-label mb-0">Especificaciones técnicas</label>
+                            <button type="button" id="btnAgregarEspec" class="btn btn-sm btn-outline-primary">
+                                + Agregar
+                            </button>
+                        </div>
+
+                        <div id="listaEspecificaciones"></div>
+                    </form>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                        Cancelar
+                    </button>
+                    <button type="button" id="btnGuardarProducto" class="btn btn-admin-principal">
+                        Guardar cambios
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Deben cargarse antes del código del panel -->
+    <script src="js/productos.js"></script>
+    <script src="js/catalogo-datos.js"></script>
+
+    <script>
+        // Catálogo actual (original + cambios guardados anteriormente)
+        let catalogoActual = obtenerCatalogo();
+
+        const cuerpoTabla = document.getElementById("cuerpoTabla");
+        const mensajeAdmin = document.getElementById("mensajeAdmin");
+        const listaEspecificaciones = document.getElementById("listaEspecificaciones");
+        const listaCategorias = document.getElementById("listaCategorias");
+        const formEditar = document.getElementById("formEditar");
+
+        const modalEditar = new bootstrap.Modal(document.getElementById("modalEditar"));
+
+        function formatearPrecio(precio) {
+            return new Intl.NumberFormat("es-CL", {
+                style: "currency",
+                currency: "CLP",
+                maximumFractionDigits: 0
+            }).format(precio);
+        }
+
+        function mostrarMensaje(texto, tipo) {
+            const aviso = document.createElement("div");
+            aviso.className = `alert alert-${tipo || "success"} alert-dismissible fade show`;
+            aviso.setAttribute("role", "status");
+            aviso.textContent = texto;
+
+            const cerrar = document.createElement("button");
+            cerrar.type = "button";
+            cerrar.className = "btn-close";
+            cerrar.setAttribute("data-bs-dismiss", "alert");
+            cerrar.setAttribute("aria-label", "Cerrar");
+
+            aviso.appendChild(cerrar);
+            mensajeAdmin.replaceChildren(aviso);
+        }
+
+        // Llena el <datalist> con las categorías que ya existen en el catálogo
+        function actualizarCategorias() {
+            const categorias = [...new Set(catalogoActual.map(p => p.categoria))];
+
+            listaCategorias.replaceChildren(
+                ...categorias.map(categoria => {
+                    const opcion = document.createElement("option");
+                    opcion.value = categoria;
+                    return opcion;
+                })
+            );
+        }
+
+        // Dibuja la tabla completa a partir de catalogoActual
+        function renderizarTabla() {
+            cuerpoTabla.replaceChildren();
+            actualizarCategorias();
+
+            if (catalogoActual.length === 0) {
+                const fila = document.createElement("tr");
+                fila.innerHTML = `
+                    <td colspan="5" class="text-center text-muted py-4">
+                        No hay productos en el catálogo.
+                    </td>
+                `;
+                cuerpoTabla.appendChild(fila);
+                return;
+            }
+
+            catalogoActual.forEach(producto => {
+                const fila = document.createElement("tr");
+
+                fila.innerHTML = `
+                    <td>
+                        <div class="d-flex align-items-center gap-2">
+                            <img class="admin-miniatura" alt="" src="${producto.imagen || ""}"
+                                onerror="this.style.visibility='hidden'">
+                            <div>
+                                <div class="fw-semibold">${producto.nombre}</div>
+                                <small class="text-muted">
+                                    ${producto.marca || ""} ${producto.modelo || ""}
+                                </small>
+                            </div>
+                        </div>
+                    </td>
+                    <td>${producto.categoria || ""}</td>
+                    <td>${formatearPrecio(producto.precio || 0)}</td>
+                    <td>${Number.isInteger(producto.stock) ? producto.stock : 0}</td>
+                    <td class="text-end">
+                        <button type="button" class="btn btn-sm btn-outline-primary me-2 btn-editar"
+                            data-id="${producto.id}">
+                            Editar
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-danger btn-eliminar"
+                            data-id="${producto.id}">
+                            Eliminar
+                        </button>
+                    </td>
+                `;
+
+                cuerpoTabla.appendChild(fila);
+            });
+
+            cuerpoTabla.querySelectorAll(".btn-editar").forEach(boton => {
+                boton.addEventListener("click", () => abrirEdicion(Number(boton.dataset.id)));
+            });
+
+            cuerpoTabla.querySelectorAll(".btn-eliminar").forEach(boton => {
+                boton.addEventListener("click", () => eliminarProducto(Number(boton.dataset.id)));
+            });
+        }
+
+        // Crea una fila con dos campos (nombre y valor) para una especificación
+        function crearFilaEspecificacion(nombre, valor) {
+            const fila = document.createElement("div");
+            fila.className = "row g-2 align-items-center mb-2 fila-especificacion";
+
+            fila.innerHTML = `
+                <div class="col-5">
+                    <input type="text" class="form-control form-control-sm espec-nombre"
+                        placeholder="Ej: Frecuencia" value="${nombre || ""}">
+                </div>
+                <div class="col-5">
+                    <input type="text" class="form-control form-control-sm espec-valor"
+                        placeholder="Ej: 3500-5300 MHz" value="${valor || ""}">
+                </div>
+                <div class="col-2">
+                    <button type="button" class="btn btn-sm btn-outline-danger w-100 btn-quitar-espec">
+                        ✕
+                    </button>
+                </div>
+            `;
+
+            fila.querySelector(".btn-quitar-espec").addEventListener("click", () => fila.remove());
+
+            return fila;
+        }
+
+        document.getElementById("btnAgregarEspec").addEventListener("click", () => {
+            listaEspecificaciones.appendChild(crearFilaEspecificacion("", ""));
+        });
+
+        // Abre el modal ya cargado con los datos del producto elegido
+        function abrirEdicion(id) {
+            const producto = catalogoActual.find(p => p.id === id);
+            if (!producto) return;
+
+            document.getElementById("editId").value = producto.id;
+            document.getElementById("editNombre").value = producto.nombre || "";
+            document.getElementById("editCategoria").value = producto.categoria || "";
+            document.getElementById("editMarca").value = producto.marca || "";
+            document.getElementById("editModelo").value = producto.modelo || "";
+            document.getElementById("editPrecio").value = producto.precio || 0;
+            document.getElementById("editStock").value = producto.stock || 0;
+            document.getElementById("editDescripcion").value = producto.descripcion || "";
+
+            const especificaciones = producto.especificaciones || {};
+            listaEspecificaciones.replaceChildren(
+                ...Object.entries(especificaciones)
+                    .map(([nombre, valor]) => crearFilaEspecificacion(nombre, valor))
+            );
+
+            if (Object.keys(especificaciones).length === 0) {
+                listaEspecificaciones.appendChild(crearFilaEspecificacion("", ""));
+            }
+
+            modalEditar.show();
+        }
+
+        // Guarda los cambios del formulario en catalogoActual y en localStorage
+        document.getElementById("btnGuardarProducto").addEventListener("click", () => {
+            if (!formEditar.reportValidity()) return;
+
+            const id = Number(document.getElementById("editId").value);
+            const producto = catalogoActual.find(p => p.id === id);
+            if (!producto) return;
+
+            producto.nombre = document.getElementById("editNombre").value.trim();
+            producto.categoria = document.getElementById("editCategoria").value.trim();
+            producto.marca = document.getElementById("editMarca").value.trim();
+            producto.modelo = document.getElementById("editModelo").value.trim();
+            producto.precio = Number(document.getElementById("editPrecio").value);
+            producto.stock = Number(document.getElementById("editStock").value);
+            producto.descripcion = document.getElementById("editDescripcion").value.trim();
+
+            const especificaciones = {};
+            listaEspecificaciones.querySelectorAll(".fila-especificacion").forEach(fila => {
+                const nombreEspec = fila.querySelector(".espec-nombre").value.trim();
+                const valorEspec = fila.querySelector(".espec-valor").value.trim();
+
+                if (nombreEspec !== "" && valorEspec !== "") {
+                    especificaciones[nombreEspec] = valorEspec;
+                }
+            });
+            producto.especificaciones = especificaciones;
+
+            guardarCatalogo(catalogoActual);
+            renderizarTabla();
+            modalEditar.hide();
+            mostrarMensaje(`"${producto.nombre}" se actualizó correctamente.`, "success");
+        });
+
+        // Elimina un producto (con confirmación) y guarda el catálogo resultante
+        function eliminarProducto(id) {
+            const producto = catalogoActual.find(p => p.id === id);
+            if (!producto) return;
+
+            const confirmar = window.confirm(
+                `¿Eliminar "${producto.nombre}" del catálogo? Esta acción no se puede deshacer.`
+            );
+            if (!confirmar) return;
+
+            catalogoActual = catalogoActual.filter(p => p.id !== id);
+            guardarCatalogo(catalogoActual);
+            renderizarTabla();
+            mostrarMensaje(`"${producto.nombre}" se eliminó del catálogo.`, "warning");
+        }
+
+        // Vuelve al catálogo original de js/productos.js
+        document.getElementById("btnRestablecer").addEventListener("click", () => {
+            const confirmar = window.confirm(
+                "Esto borrará todos tus cambios y volverá al catálogo original. ¿Continuar?"
+            );
+            if (!confirmar) return;
+
+            restablecerCatalogo();
+            catalogoActual = obtenerCatalogo();
+            renderizarTabla();
+            mostrarMensaje("El catálogo volvió a sus valores originales.", "success");
+        });
+
+        // Cerrar sesión de administrador
+        document.getElementById("cerrarSesion").addEventListener("click", () => {
+            sessionStorage.removeItem("rolActivo");
+            window.location.href = "login.html";
+        });
+
+        renderizarTabla();
+    </script>
+
+</body>
+</html>
