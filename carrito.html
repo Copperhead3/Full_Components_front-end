@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>carrito</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/carro.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Barra superior -->
+    <nav class="navbar navbar-dark navbar-principal">
+        <div class="container-fluid px-4">
+            <!-- Logo -->
+            <!-- Logo -->
+            <!-- Logo -->
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <span class="logo-icon">▣</span>
+
+                <!-- Nombre abreviado para móvil -->
+                <span class="logo-text-mobile ms-2 d-md-none">
+                    FC Store
+                </span>
+
+                <!-- Nombre completo para tablet y computador -->
+                <div class="ms-2 d-none d-md-block">
+                    <span class="logo-text">FullComponents Store</span>
+                    <small class="d-block logo-subtitle">
+                        Componentes para grandes ideas
+                    </small>
+                </div>
+            </a>
+            <!-- Buscador -->
+            <form class="d-flex buscador mx-4 flex-grow-1" role="search">
+                <input class="form-control" type="search" placeholder="Buscar productos, marcas o categorías..."
+                    aria-label="Buscar">
+                <button class="btn btn-buscar" type="submit">
+                    🔍
+                </button>
+            </form>
+            <!-- Usuario y carrito -->
+            <div class="nav-opciones d-flex align-items-center">
+
+                <!-- Iniciar sesión -->
+                <a href="login.html" class="nav-link text-white me-4" aria-label="Iniciar sesión"
+                    title="Iniciar sesión">
+                    👤
+                    <span class="d-none d-md-inline">Iniciar sesión</span>
+                </a>
+
+                <!-- Carrito -->
+                <a href="#" class="nav-link text-white carrito me-4" aria-label="Ver carrito" title="Ver carrito">
+                    🛒
+                    <span class="d-none d-md-inline">Carrito</span>
+                    <span class="badge rounded-pill">0</span>
+                </a>
+
+            </div>
+        </div>
+    </nav>
+    <!-- Segunda barra de navegación -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-secundaria">
+        <div class="container">
+            <!-- Botón responsive -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal"
+                aria-controls="menuPrincipal" aria-expanded="false" aria-label="Mostrar navegación">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="menuPrincipal">
+                <!-- Categorías -->
+                <div class="dropdown">
+                    <button class="btn btn-categorias dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        ☰ Todas las categorías
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                Procesadores
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                Tarjetas gráficas
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                Placas madre
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                Memorias RAM
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                Almacenamiento
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                Fuentes de poder
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                Gabinetes
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Menú principal -->
+                <ul class="navbar-nav ms-4">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">
+                            Inicio
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="catálogo.html">
+                            Categorías
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            Ofertas
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            Novedades
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main class="pagina-carrito">
+
+        <div class="container">
+
+            <!-- =========================
+             BREADCRUMB
+        ========================= -->
+
+            <nav aria-label="Ruta de navegación">
+
+                <ol class="breadcrumb carrito-breadcrumb">
+
+                    <li class="breadcrumb-item">
+                        <a href="index.html">Inicio</a>
+                    </li>
+
+                    <li class="breadcrumb-item active" aria-current="page">
+                        Carrito de compras
+                    </li>
+
+                </ol>
+
+            </nav>
+
+
+            <!-- =========================
+             ENCABEZADO
+        ========================= -->
+
+            <div class="carrito-encabezado">
+
+                <div>
+
+                    <h1>Tu carrito</h1>
+
+                    <p>
+                        Revisa tus productos y finaliza tu compra.
+                    </p>
+
+                </div>
+
+                <a href="index.html" class="seguir-comprando">
+                    ← Seguir comprando
+                </a>
+
+            </div>
+
+
+            <!-- =========================
+             CONTENIDO PRINCIPAL
+        ========================= -->
+
+            <div class="row g-4 align-items-start">
+
+                <!-- COLUMNA IZQUIERDA -->
+                <div class="col-12 col-lg-8">
+
+                    <section class="carrito-productos" aria-labelledby="titulo-listado">
+
+                        <h2 id="titulo-listado" class="visually-hidden">
+                            Productos agregados al carrito
+                        </h2>
+
+                        <!-- Encabezados de tabla -->
+                        <div class="carrito-columnas">
+
+                            <span>Producto</span>
+                            <span>Precio unitario</span>
+                            <span>Cantidad</span>
+                            <span>Subtotal</span>
+
+                        </div>
+
+                        <!-- Productos generados por JavaScript -->
+                        <div id="lista-carrito"></div>
+
+
+                        <!-- Mensaje carrito vacío -->
+                        <div id="carrito-vacio" class="carrito-vacio d-none">
+
+                            <span aria-hidden="true">🛒</span>
+
+                            <h3>Tu carrito está vacío</h3>
+
+                            <p>
+                                Todavía no has agregado productos.
+                                Explora nuestro catálogo y encuentra
+                                los componentes que necesitas.
+                            </p>
+
+                            <a href="index.html" class="btn btn-carrito-principal">
+                                Explorar productos
+                            </a>
+
+                        </div>
+
+
+                        <!-- Acciones -->
+                        <div id="acciones-carrito" class="carrito-acciones">
+
+                            <button type="button" id="vaciar-carrito" class="btn btn-vaciar">
+                                🗑 Vaciar carrito
+                            </button>
+
+                            <a href="index.html">
+                                Seguir comprando →
+                            </a>
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- =========================
+                     RECOMENDACIONES
+                ========================= -->
+
+                    <section class="carrito-recomendaciones" aria-labelledby="titulo-recomendaciones">
+
+                        <div class="recomendaciones-encabezado">
+
+                            <h2 id="titulo-recomendaciones">
+                                También te puede interesar
+                            </h2>
+
+                            <a href="index.html">
+                                Ver más productos →
+                            </a>
+
+                        </div>
+
+                        <div class="row g-3">
+
+                            <!-- Recomendación 1 -->
+                            <div class="col-12 col-md-4">
+
+                                <article class="recomendacion">
+
+                                    <img src="img/productos/corsair-rm750e.png" alt="Fuente Corsair RM750e">
+
+                                    <div>
+
+                                        <h3>Corsair RM750e 2025</h3>
+
+                                        <p>$99.990</p>
+
+                                        <button type="button" class="btn btn-recomendacion" data-id="corsair-rm750e">
+                                            Agregar al carrito
+                                        </button>
+
+                                    </div>
+
+                                </article>
+
+                            </div>
+
+
+                            <!-- Recomendación 2 -->
+                            <div class="col-12 col-md-4">
+
+                                <article class="recomendacion">
+
+                                    <img src="img/productos/gabinete-neutron-x-pro.png"
+                                        alt="Gabinete XYZ Neutron X Pro">
+
+                                    <div>
+
+                                        <h3>XYZ Neutron X Pro</h3>
+
+                                        <p>$149.995</p>
+
+                                        <button type="button" class="btn btn-recomendacion" data-id="gabinete-neutron">
+                                            Agregar al carrito
+                                        </button>
+
+                                    </div>
+
+                                </article>
+
+                            </div>
+
+
+                            <!-- Recomendación 3 -->
+                            <div class="col-12 col-md-4">
+
+                                <article class="recomendacion">
+
+                                    <img src="img/productos/intel-i9-14900ks.png"
+                                        alt="Procesador Intel Core i9-14900KS">
+
+                                    <div>
+
+                                        <h3>Intel Core i9-14900KS</h3>
+
+                                        <p>$849.000</p>
+
+                                        <button type="button" class="btn btn-recomendacion" data-id="intel-i9">
+                                            Agregar al carrito
+                                        </button>
+
+                                    </div>
+
+                                </article>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+                </div>
+
+
+                <!-- =========================
+                 RESUMEN DE COMPRA
+            ========================= -->
+
+                <div class="col-12 col-lg-4">
+
+                    <aside class="resumen-compra">
+
+                        <h2>Resumen de compra</h2>
+
+                        <div class="resumen-linea">
+
+                            <span id="resumen-cantidad">
+                                Subtotal (0 productos)
+                            </span>
+
+                            <span id="resumen-subtotal">
+                                $0
+                            </span>
+
+                        </div>
+
+                        <div class="resumen-linea">
+
+                            <span>Envío</span>
+
+                            <span class="resumen-envio">
+                                Calculado en el siguiente paso
+                            </span>
+
+                        </div>
+
+                        <hr>
+
+                        <div class="resumen-total">
+
+                            <span>Total</span>
+
+                            <strong id="resumen-total">
+                                $0
+                            </strong>
+
+                        </div>
+
+                        <p class="resumen-impuesto">
+                            IVA incluido
+                        </p>
+
+                        <button type="button" id="finalizar-compra" class="btn btn-carrito-principal w-100">
+                            Finalizar compra →
+                        </button>
+
+                        <div class="compra-segura">
+
+                            <span aria-hidden="true">🛡️</span>
+
+                            <div>
+
+                                <strong>Compra 100% segura</strong>
+
+                                <p>
+                                    Tus datos están protegidos
+                                    durante el proceso de compra.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </aside>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/carrito.js" defer></script>
+</body>
+
+</html>
