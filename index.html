@@ -35,10 +35,11 @@
                     </div>
                 </a>
                 <!-- Buscador -->
-                <form class="d-flex buscador mx-4 flex-grow-1" role="search">
-                    <input class="form-control" type="search" placeholder="Buscar productos, marcas o categorías..."
-                        aria-label="Buscar">
-                    <button class="btn btn-buscar" type="submit">
+                <form class="d-flex buscador flex-grow-1" role="search" action="catálogo.html" method="GET">
+                    <input class="form-control" type="search" name="q"
+                        placeholder="Buscar productos, marcas o categorías..." aria-label="Buscar productos" required>
+
+                    <button class="btn btn-buscar" type="submit" aria-label="Buscar">
                         🔍
                     </button>
                 </form>
@@ -46,7 +47,8 @@
                 <div class="nav-opciones d-flex align-items-center">
 
                     <!-- Iniciar sesión -->
-                    <a href="login.html"  id="linkSesion" class="nav-link text-white me-4" aria-label="Iniciar sesión" title="Iniciar sesión">
+                    <a href="login.html" id="linkSesion" class="nav-link text-white me-4" aria-label="Iniciar sesión"
+                        title="Iniciar sesión">
                         👤
                         <span class="d-none d-md-inline texto-sesion">Iniciar sesión</span>
                     </a>
