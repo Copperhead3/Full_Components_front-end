@@ -16,195 +16,125 @@
 <body>
 
     <header>
-        <!-- Barra superior -->
+         <!-- Barra superior -->
         <nav class="navbar navbar-dark navbar-principal">
-            <div class="container-fluid px-4 barra-superior-contenido">
-
-                <a
-                    class="navbar-brand d-flex align-items-center"
-                    href="index.html"
-                >
+            <div class="container-fluid px-4">
+                <!-- Logo -->
+                <a class="navbar-brand d-flex align-items-center" href="index.html" aria-label="Ir a la página principal">
                     <span class="logo-icon">▣</span>
 
+                    <!-- Nombre abreviado para móvil -->
                     <span class="logo-text-mobile ms-2 d-md-none">
                         FC Store
                     </span>
 
+                    <!-- Nombre completo para tablet y computador -->
                     <div class="ms-2 d-none d-md-block">
-                        <span class="logo-text">
-                            FullComponents Store
-                        </span>
+                        <span class="logo-text">FullComponents Store</span>
                         <small class="d-block logo-subtitle">
                             Componentes para grandes ideas
                         </small>
                     </div>
                 </a>
-
-                <form
-                    class="d-flex buscador flex-grow-1"
-                    action="catálogo.html"
-                    method="get"
-                    role="search"
-                >
-                    <input
-                        class="form-control"
-                        type="search"
-                        name="q"
-                        placeholder="Buscar productos, marcas o categorías..."
-                        aria-label="Buscar productos"
-                    >
-
-                    <button
-                        class="btn btn-buscar"
-                        type="submit"
-                        aria-label="Buscar"
-                    >
+                <!-- Buscador -->
+                <form class="d-flex buscador mx-4 flex-grow-1" role="search">
+                    <input class="form-control" type="search" placeholder="Buscar productos, marcas o categorías..."
+                        aria-label="Buscar">
+                    <button class="btn btn-buscar" type="submit">
                         🔍
                     </button>
                 </form>
-
+                <!-- Usuario y carrito -->
                 <div class="nav-opciones d-flex align-items-center">
-                    <a
-                        href="login.html"
-                        class="nav-link text-white me-4"
-                        aria-label="Iniciar sesión"
-                    >
+
+                    <!-- Iniciar sesión -->
+                    <a href="login.html" class="nav-link text-white me-4" aria-label="Iniciar sesión" title="Iniciar sesión">
                         👤
-                        <span class="d-none d-md-inline">
-                            Iniciar sesión
-                        </span>
+                        <span class="d-none d-md-inline">Iniciar sesión</span>
                     </a>
 
-                    <button
-                        id="abrirCarrito"
-                        class="nav-link text-white carrito border-0 bg-transparent"
-                        type="button"
-                        aria-label="Ver carrito"
-                    >
+                    <!-- Carrito -->
+                    <a href="carrito.html" class="nav-link text-white carrito me-4" aria-label="Ver carrito" title="Ver carrito">
                         🛒
-                        <span class="d-none d-md-inline">
-                            Carrito
-                        </span>
-                        <span
-                            id="contadorCarrito"
-                            class="badge rounded-pill"
-                        >0</span>
-                    </button>
+                        <span class="d-none d-md-inline">Carrito</span>
+                        <span class="badge rounded-pill">0</span>
+                    </a>
+
                 </div>
             </div>
         </nav>
-
-        <!-- Menú responsive; no hay carrusel en esta página -->
+        <!-- Segunda barra de navegación -->
         <nav class="navbar navbar-expand-lg navbar-dark navbar-secundaria">
             <div class="container">
-
-                <button
-                    class="navbar-toggler"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#menuPrincipal"
-                    aria-controls="menuPrincipal"
-                    aria-expanded="false"
-                    aria-label="Mostrar navegación"
-                >
+                <!-- Botón responsive -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal"
+                    aria-controls="menuPrincipal" aria-expanded="false" aria-label="Mostrar navegación">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
-                <div
-                    class="collapse navbar-collapse"
-                    id="menuPrincipal"
-                >
+                <div class="collapse navbar-collapse" id="menuPrincipal">
+                    <!-- Categorías -->
                     <div class="dropdown">
-                        <button
-                            class="btn btn-categorias dropdown-toggle"
-                            type="button"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false"
-                        >
+                        <button class="btn btn-categorias dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
                             ☰ Todas las categorías
                         </button>
-
                         <ul class="dropdown-menu">
                             <li>
-                                <a
-                                    class="dropdown-item"
-                                    href="catálogo.html"
-                                >
-                                    Todos los productos
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                    class="dropdown-item"
-                                    href="catálogo.html?categoria=Procesadores"
-                                >
+                                <a class="dropdown-item" href="#">
                                     Procesadores
                                 </a>
                             </li>
                             <li>
-                                <a
-                                    class="dropdown-item"
-                                    href="catálogo.html?categoria=Tarjetas%20gr%C3%A1ficas"
-                                >
+                                <a class="dropdown-item" href="#">
                                     Tarjetas gráficas
                                 </a>
                             </li>
                             <li>
-                                <a
-                                    class="dropdown-item"
-                                    href="catálogo.html?categoria=Memorias%20RAM"
-                                >
+                                <a class="dropdown-item" href="#">
+                                    Placas madre
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">
                                     Memorias RAM
                                 </a>
                             </li>
                             <li>
-                                <a
-                                    class="dropdown-item"
-                                    href="catálogo.html?categoria=Almacenamiento"
-                                >
+                                <a class="dropdown-item" href="#">
                                     Almacenamiento
                                 </a>
                             </li>
                             <li>
-                                <a
-                                    class="dropdown-item"
-                                    href="catálogo.html?categoria=Fuentes%20de%20poder"
-                                >
+                                <a class="dropdown-item" href="#">
                                     Fuentes de poder
                                 </a>
                             </li>
                             <li>
-                                <a
-                                    class="dropdown-item"
-                                    href="catálogo.html?categoria=Gabinetes"
-                                >
+                                <a class="dropdown-item" href="#">
                                     Gabinetes
                                 </a>
                             </li>
                         </ul>
                     </div>
-
-                    <ul class="navbar-nav ms-lg-4">
+                    <!-- Menú principal -->
+                    <ul class="navbar-nav ms-4">
                         <li class="nav-item">
-                            <a class="nav-link" href="index.html">
+                            <a class="nav-link active" href="index.html">
                                 Inicio
                             </a>
                         </li>
-
                         <li class="nav-item">
-                            <a class="nav-link" href="catálogo.html">
+                            <a class="nav-link" href="#">
                                 Categorías
                             </a>
                         </li>
-
                         <li class="nav-item">
-                            <a class="nav-link" href="index.html#ofertas">
+                            <a class="nav-link" href="#">
                                 Ofertas
                             </a>
                         </li>
-
                         <li class="nav-item">
-                            <a class="nav-link" href="index.html#novedades">
+                            <a class="nav-link" href="#">
                                 Novedades
                             </a>
                         </li>
