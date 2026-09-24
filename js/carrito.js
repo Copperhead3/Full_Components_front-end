@@ -144,7 +144,7 @@ function renderizarCarrito() {
         document.getElementById("acciones-carrito");
 
     const botonFinalizar =
-        document.getElementById("finalizar-compra");
+        document.getElementById("btnFinalizarCompra");
 
     if (
         !lista ||
@@ -225,8 +225,7 @@ function renderizarCarrito() {
             "carrito-stock";
 
         stockVisible.textContent =
-            `Disponible para añadir: ${
-                Math.max(0, stock - cantidad)
+            `Disponible para añadir: ${Math.max(0, stock - cantidad)
             }`;
 
         texto.append(
@@ -359,14 +358,12 @@ function renderizarCarrito() {
         cantidadTotal === 0
     );
 
-    /*
-     * El checkout todavía no está implementado.
-     * Evitamos que el botón parezca confirmar una compra.
-     */
-    botonFinalizar.disabled = true;
+    // Solo permitir finalizar si hay productos en el carrito
+    botonFinalizar.disabled = cantidadTotal === 0;
 
-    botonFinalizar.title =
-        "El proceso de compra aún no está disponible";
+    botonFinalizar.title = cantidadTotal === 0
+        ? "Agrega productos para finalizar la compra"
+        : "Finalizar compra";
 
     document.getElementById(
         "resumen-cantidad"
@@ -388,7 +385,7 @@ function renderizarCarrito() {
         .forEach(
             badge =>
                 badge.textContent =
-                    String(cantidadTotal)
+                String(cantidadTotal)
         );
 }
 
@@ -460,7 +457,7 @@ document.addEventListener(
                 () => {
                     const id =
                         idsAntiguos[
-                            boton.dataset.id
+                        boton.dataset.id
                         ] ??
                         Number(
                             boton.dataset.id
