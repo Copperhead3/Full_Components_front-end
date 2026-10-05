@@ -272,15 +272,80 @@
                 return;
             }
 
-            const usuario = {
+            const usuarios =
+                JSON.parse(
+                    localStorage.getItem("usuarios")
+                ) || [];
+
+
+            /*
+             * Comprobar que el correo no esté registrado.
+             */
+            const correoExiste =
+                usuarios.some(
+                    usuario =>
+                        usuario.email.toLowerCase() ===
+                        email.toLowerCase()
+                );
+
+
+            if (correoExiste) {
+
+                mostrarMensaje(
+                    "Ya existe una cuenta registrada con este correo.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            /*
+             * Crear el nuevo usuario.
+             */
+            const nuevoUsuario = {
+
+                id:
+                    "USR-" +
+                    String(usuarios.length + 1)
+                        .padStart(4, "0"),
+
                 nombre: nombre,
+
                 email: email,
-                password: password
+
+                password: password,
+
+                rol: "Cliente",
+
+                estado: "Activo",
+
+                fechaRegistro:
+                    new Date().toLocaleString("es-CL")
+
             };
 
-            localStorage.setItem("usuario", JSON.stringify(usuario));
 
-            mostrarMensaje("Cuenta creada correctamente. Ahora puedes iniciar sesión.", "exito");
+            /*
+             * Agregarlo a la lista.
+             */
+            usuarios.push(nuevoUsuario);
+
+
+            /*
+             * Guardar todos los usuarios.
+             */
+            localStorage.setItem(
+                "usuarios",
+                JSON.stringify(usuarios)
+            );
+
+
+            mostrarMensaje(
+                "Cuenta creada correctamente. Ahora puedes iniciar sesión.",
+                "exito"
+            );
+
 
             registroForm.reset();
 
@@ -310,14 +375,85 @@
                 return;
             }
             <!--Comprobar si el usuario existe-->
-            const datosGuardados = localStorage.getItem("usuario");
+            // Obtener usuarios registrados
+            const usuarios =
+                JSON.parse(
+                    localStorage.getItem("usuarios")
+                ) || [];
 
-            if (!datosGuardados) {
-                mostrarMensaje("No existe una cuenta registrada. Crea una cuenta primero.", "error");
+
+            /*
+             * Buscar un usuario cuyo correo y contraseña
+             * coincidan con los ingresados.
+             */
+            const usuario =
+                usuarios.find(
+                    usuario =>
+                        usuario.email.toLowerCase() ===
+                        email.toLowerCase() &&
+                        usuario.password === password
+                );
+
+
+            if (!usuario) {
+
+                mostrarMensaje(
+                    "Correo o contraseña incorrectos.",
+                    "error"
+                );
+
                 return;
             }
 
-            const usuario = JSON.parse(datosGuardados);
+
+            /*
+             * Comprobar que la cuenta esté activa.
+             */
+            if (usuario.estado !== "Activo") {
+
+                mostrarMensaje(
+                    "Esta cuenta se encuentra desactivada.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            mostrarMensaje(
+                "¡Bienvenido/a, " +
+                usuario.nombre +
+                "!",
+                "exito"
+            );
+
+
+            /*
+             * Guardamos solamente los datos necesarios
+             * para identificar la sesión.
+             */
+            sessionStorage.setItem(
+                "usuarioActivo",
+                JSON.stringify({
+
+                    id: usuario.id,
+
+                    nombre: usuario.nombre,
+
+                    email: usuario.email,
+
+                    rol: usuario.rol
+
+                })
+            );
+
+
+            setTimeout(function () {
+
+                window.location.href =
+                    "index.html";
+
+            }, 1200);
 
             if (email === usuario.email && password === usuario.password) {
                 mostrarMensaje("¡Bienvenido/a, " + usuario.nombre + "!", "exito");
