@@ -392,12 +392,39 @@ function renderizarCarrito() {
 /* Eventos */
 document.addEventListener(
     "DOMContentLoaded",
+
     () => {
+
         renderizarCarrito();
+
+
+        /* Ir al checkout */
+
+        const botonFinalizar =
+            document.getElementById(
+                "btnFinalizarCompra"
+            );
+
+        if (botonFinalizar) {
+
+            botonFinalizar.addEventListener(
+                "click",
+
+                () => {
+
+                    window.location.href =
+                        "checkout.html";
+
+                }
+            );
+
+        }
+
 
         document.getElementById(
             "lista-carrito"
         ).addEventListener("click", event => {
+
             const boton =
                 event.target.closest(
                     "button[data-accion]"
@@ -430,7 +457,9 @@ document.addEventListener(
             ) {
                 eliminarProducto(id);
             }
+
         });
+
 
         document.getElementById(
             "vaciar-carrito"
@@ -439,22 +468,30 @@ document.addEventListener(
             vaciarCarrito
         );
 
+
         /*
          * Compatibilidad con los data-id antiguos
          * de las recomendaciones de carrito.html.
          */
+
         const idsAntiguos = {
+
             "corsair-rm750e": 15,
             "gabinete-neutron": 13,
             "intel-i9": 3
+
         };
+
 
         document.querySelectorAll(
             ".btn-recomendacion"
         ).forEach(boton => {
+
             boton.addEventListener(
                 "click",
+
                 () => {
+
                     const id =
                         idsAntiguos[
                         boton.dataset.id
@@ -464,18 +501,70 @@ document.addEventListener(
                         );
 
                     agregarAlCarrito(id);
+
                 }
             );
+
         });
+
 
         window.addEventListener(
             "pageshow",
             renderizarCarrito
         );
 
+
         window.addEventListener(
             "storage",
             renderizarCarrito
         );
+
     }
 );
+
+document.getElementById(
+    "vaciar-carrito"
+).addEventListener(
+    "click",
+    vaciarCarrito
+);
+
+/*
+ * Compatibilidad con los data-id antiguos
+ * de las recomendaciones de carrito.html.
+ */
+const idsAntiguos = {
+    "corsair-rm750e": 15,
+    "gabinete-neutron": 13,
+    "intel-i9": 3
+};
+
+document.querySelectorAll(
+    ".btn-recomendacion"
+).forEach(boton => {
+    boton.addEventListener(
+        "click",
+        () => {
+            const id =
+                idsAntiguos[
+                boton.dataset.id
+                ] ??
+                Number(
+                    boton.dataset.id
+                );
+
+            agregarAlCarrito(id);
+        }
+    );
+});
+
+window.addEventListener(
+    "pageshow",
+    renderizarCarrito
+);
+
+window.addEventListener(
+    "storage",
+    renderizarCarrito
+);
+    
