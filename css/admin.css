@@ -111,3 +111,154 @@
         white-space: nowrap;
     }
 }
+
+/* =========================
+   NAVEGACIÓN ADMIN
+========================= */
+
+.admin-navegacion {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #E5EBF1;
+}
+
+.admin-nav-btn {
+    background-color: transparent;
+    border: none;
+    color: #64748B;
+    font-weight: 600;
+    padding: 9px 16px;
+    border-radius: 8px;
+    transition: 0.2s;
+}
+
+.admin-nav-btn:hover {
+    background-color: #EAF4FF;
+    color: #087CF0;
+}
+
+.admin-nav-btn.active {
+    background-color: #087CF0;
+    color: #FFFFFF;
+}
+
+
+/* =========================
+   TARJETAS DEL DASHBOARD
+========================= */
+
+.admin-stat-card {
+    height: 100%;
+    background-color: #FFFFFF;
+    border: 1px solid #E5EBF1;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.admin-stat-label {
+    display: block;
+    color: #64748B;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 7px;
+}
+
+.admin-stat-valor {
+    display: block;
+    color: #102A43;
+    font-size: 27px;
+    line-height: 1.2;
+    margin-bottom: 5px;
+}
+
+
+/* =========================
+   BLOQUES ADMIN
+========================= */
+
+.admin-bloque {
+    background-color: #FFFFFF;
+    border: 1px solid #E5EBF1;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.admin-subtitulo {
+    color: #102A43;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 3px;
+}
+
+
+/* =========================
+   ESTADOS DE PEDIDOS
+========================= */
+
+.admin-estado {
+    display: inline-block;
+    border-radius: 20px;
+    padding: 5px 10px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.admin-estado-pagado {
+    background-color: #E7F7EF;
+    color: #16794B;
+}
+
+
+/* =========================
+   MODAL PEDIDO
+========================= */
+
+.admin-modal-titulo {
+    color: #102A43;
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.admin-detalle-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.admin-detalle-item {
+    background-color: #F4F7FA;
+    border-radius: 8px;
+    padding: 10px 12px;
+}
+
+.admin-detalle-item small {
+    display: block;
+    color: #64748B;
+    margin-bottom: 2px;
+}
+
+.admin-detalle-item strong {
+    color: #102A43;
+    font-size: 14px;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 767.98px) {
+
+    .admin-detalle-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-nav-btn {
+        flex: 1;
+    }
+
+}

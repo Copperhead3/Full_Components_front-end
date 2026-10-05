@@ -1,411 +1,2811 @@
 <!DOCTYPE html>
+
 <html lang="es-CL">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de administración | FullComponents Store</title>
 
-    <!-- Si nadie inició sesión como admin, lo mandamos al login de una vez -->
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Panel de administración | FullComponents Store
+    </title>
+
+
+    <!--
+        Si nadie inició sesión como admin,
+        lo enviamos al login.
+    -->
+
     <script>
-        if (sessionStorage.getItem("rolActivo") !== "admin") {
-            window.location.href = "login.html";
+
+        if (
+            sessionStorage.getItem("rolActivo")
+            !== "admin"
+        ) {
+
+            window.location.href =
+                "login.html";
+
         }
+
     </script>
 
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <link href="css/style.css" rel="stylesheet">
+
     <link href="css/admin.css" rel="stylesheet">
+
 </head>
 
+
 <body>
+
 
     <!-- =========================
          NAVBAR
     ========================== -->
-    <header>
-        <nav class="navbar navbar-dark navbar-principal">
-            <div class="container-fluid px-4 d-flex justify-content-between align-items-center flex-wrap gap-2">
 
-                <a class="navbar-brand d-flex align-items-center" href="index.html">
-                    <span class="logo-icon">▣</span>
+    <header>
+
+        <nav class="
+                navbar
+                navbar-dark
+                navbar-principal
+            ">
+
+            <div class="
+                    container-fluid
+                    px-4
+                    d-flex
+                    justify-content-between
+                    align-items-center
+                    flex-wrap
+                    gap-2
+                ">
+
+                <a class="
+                        navbar-brand
+                        d-flex
+                        align-items-center
+                    " href="index.html">
+
+                    <span class="logo-icon">
+                        ▣
+                    </span>
+
                     <div class="ms-2">
-                        <span class="logo-text">FullComponents Store</span>
-                        <small class="d-block logo-subtitle">Panel de administración</small>
+
+                        <span class="logo-text">
+                            FullComponents Store
+                        </span>
+
+                        <small class="
+                                d-block
+                                logo-subtitle
+                            ">
+                            Panel de administración
+                        </small>
+
                     </div>
+
                 </a>
 
-                <div class="d-flex align-items-center gap-2">
-                    <a href="index.html" class="btn btn-outline-light btn-sm">Volver a la tienda</a>
-                    <button id="cerrarSesion" type="button" class="btn btn-light btn-sm">Cerrar sesión</button>
+
+                <div class="
+                        d-flex
+                        align-items-center
+                        gap-2
+                    ">
+
+                    <a href="index.html" class="
+                            btn
+                            btn-outline-light
+                            btn-sm
+                        ">
+                        Volver a la tienda
+                    </a>
+
+                    <button id="cerrarSesion" type="button" class="
+                            btn
+                            btn-light
+                            btn-sm
+                        ">
+                        Cerrar sesión
+                    </button>
+
                 </div>
 
             </div>
+
         </nav>
+
     </header>
 
+
     <!-- =========================
-         CONTENIDO
+         CONTENIDO PRINCIPAL
     ========================== -->
+
     <main class="admin-page">
+
         <div class="container-fluid">
 
-            <div class="admin-header">
-                <div>
-                    <h1>Productos del catálogo</h1>
-                    <p>Edita el precio, las especificaciones o elimina productos.</p>
+
+            <!-- =========================
+                 NAVEGACIÓN ADMIN
+            ========================== -->
+
+            <div class="
+                    admin-navegacion
+                    mb-4
+                ">
+
+                <button type="button" class="
+                        admin-nav-btn
+                        active
+                    " data-seccion="resumen">
+                    Resumen
+                </button>
+
+
+                <button type="button" class="admin-nav-btn" data-seccion="productos">
+                    Productos
+                </button>
+
+
+                <button type="button" class="admin-nav-btn" data-seccion="pedidos">
+                    Pedidos
+                </button>
+
+            </div>
+
+
+            <!-- =========================
+                 RESUMEN
+            ========================== -->
+
+            <section id="seccionResumen" class="admin-seccion">
+
+                <div class="admin-header">
+
+                    <div>
+
+                        <h1>
+                            Panel de administración
+                        </h1>
+
+                        <p>
+                            Resumen general de
+                            FullComponents Store.
+                        </p>
+
+                    </div>
+
                 </div>
 
-                <button id="btnRestablecer" type="button" class="btn btn-outline-secondary btn-sm">
-                    Restablecer catálogo original
-                </button>
-            </div>
 
-            <div id="mensajeAdmin" aria-live="polite"></div>
+                <!-- ESTADÍSTICAS -->
 
-            <div class="table-responsive admin-tabla-wrap shadow-sm">
-                <table class="table admin-tabla mb-0">
-                    <thead>
-                        <tr>
-                            <th>Producto</th>
-                            <th>Categoría</th>
-                            <th>Precio</th>
-                            <th>Stock</th>
-                            <th class="text-end">Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody id="cuerpoTabla"></tbody>
-                </table>
-            </div>
+                <div class="
+                        row
+                        g-3
+                        mb-4
+                    ">
+
+
+                    <!-- PRODUCTOS -->
+
+                    <div class="
+                            col-sm-6
+                            col-xl-3
+                        ">
+
+                        <div class="admin-stat-card">
+
+                            <span class="
+                                    admin-stat-label
+                                ">
+                                Productos
+                            </span>
+
+                            <strong class="
+                                    admin-stat-valor
+                                " id="statProductos">
+                                0
+                            </strong>
+
+                            <small class="text-muted">
+                                En el catálogo
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PEDIDOS -->
+
+                    <div class="
+                            col-sm-6
+                            col-xl-3
+                        ">
+
+                        <div class="admin-stat-card">
+
+                            <span class="
+                                    admin-stat-label
+                                ">
+                                Pedidos
+                            </span>
+
+                            <strong class="
+                                    admin-stat-valor
+                                " id="statPedidos">
+                                0
+                            </strong>
+
+                            <small class="text-muted">
+                                Registrados
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- VENTAS -->
+
+                    <div class="
+                            col-sm-6
+                            col-xl-3
+                        ">
+
+                        <div class="admin-stat-card">
+
+                            <span class="
+                                    admin-stat-label
+                                ">
+                                Ventas
+                            </span>
+
+                            <strong class="
+                                    admin-stat-valor
+                                " id="statVentas">
+                                $0
+                            </strong>
+
+                            <small class="text-muted">
+                                Total acumulado
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- STOCK -->
+
+                    <div class="
+                            col-sm-6
+                            col-xl-3
+                        ">
+
+                        <div class="admin-stat-card">
+
+                            <span class="
+                                    admin-stat-label
+                                ">
+                                Stock total
+                            </span>
+
+                            <strong class="
+                                    admin-stat-valor
+                                " id="statStock">
+                                0
+                            </strong>
+
+                            <small class="text-muted">
+                                Unidades disponibles
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================
+                     PEDIDOS RECIENTES
+                ========================== -->
+
+                <div class="admin-bloque">
+
+                    <div class="
+                            d-flex
+                            justify-content-between
+                            align-items-center
+                            flex-wrap
+                            gap-2
+                            mb-3
+                        ">
+
+                        <div>
+
+                            <h2 class="admin-subtitulo">
+                                Pedidos recientes
+                            </h2>
+
+                            <p class="
+                                    text-muted
+                                    mb-0
+                                ">
+                                Últimas compras registradas.
+                            </p>
+
+                        </div>
+
+
+                        <button type="button" class="
+                                btn
+                                btn-sm
+                                btn-outline-primary
+                            " id="btnVerTodosPedidos">
+                            Ver todos
+                        </button>
+
+                    </div>
+
+
+                    <div class="table-responsive">
+
+                        <table class="
+                                table
+                                admin-tabla
+                                mb-0
+                            ">
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>
+                                        Pedido
+                                    </th>
+
+                                    <th>
+                                        Cliente
+                                    </th>
+
+                                    <th>
+                                        Fecha
+                                    </th>
+
+                                    <th>
+                                        Total
+                                    </th>
+
+                                    <th>
+                                        Estado
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody id="pedidosRecientes">
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =========================
+                 PRODUCTOS
+            ========================== -->
+
+            <section id="seccionProductos" class="
+                    admin-seccion
+                    d-none
+                ">
+
+                <div class="admin-header">
+
+                    <div>
+
+                        <h1>
+                            Productos del catálogo
+                        </h1>
+
+                        <p>
+                            Edita el precio,
+                            las especificaciones
+                            o elimina productos.
+                        </p>
+
+                    </div>
+
+
+                    <button id="btnRestablecer" type="button" class="
+                            btn
+                            btn-outline-secondary
+                            btn-sm
+                        ">
+                        Restablecer catálogo original
+                    </button>
+
+                </div>
+
+
+                <div id="mensajeAdmin" aria-live="polite">
+                </div>
+
+
+                <div class="
+                        table-responsive
+                        admin-tabla-wrap
+                        shadow-sm
+                    ">
+
+                    <table class="
+                            table
+                            admin-tabla
+                            mb-0
+                        ">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Producto
+                                </th>
+
+                                <th>
+                                    Categoría
+                                </th>
+
+                                <th>
+                                    Precio
+                                </th>
+
+                                <th>
+                                    Stock
+                                </th>
+
+                                <th class="text-end">
+                                    Acciones
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="cuerpoTabla">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+            <!-- =========================
+                 PEDIDOS
+            ========================== -->
+
+            <section id="seccionPedidos" class="
+                    admin-seccion
+                    d-none
+                ">
+
+                <div class="admin-header">
+
+                    <div>
+
+                        <h1>
+                            Pedidos
+                        </h1>
+
+                        <p>
+                            Revisa las compras realizadas
+                            en FullComponents Store.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="
+                        table-responsive
+                        admin-tabla-wrap
+                        shadow-sm
+                    ">
+
+                    <table class="
+                            table
+                            admin-tabla
+                            mb-0
+                        ">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Pedido
+                                </th>
+
+                                <th>
+                                    Cliente
+                                </th>
+
+                                <th>
+                                    Fecha
+                                </th>
+
+                                <th>
+                                    Productos
+                                </th>
+
+                                <th>
+                                    Total
+                                </th>
+
+                                <th>
+                                    Estado
+                                </th>
+
+                                <th class="text-end">
+                                    Acción
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="cuerpoPedidos">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
 
         </div>
+
     </main>
 
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
     <footer class="admin-footer">
-        <p>© 2026 FullComponents Store - Panel de administración</p>
+
+        <p>
+            © 2026 FullComponents Store -
+            Panel de administración
+        </p>
+
     </footer>
+
 
     <!-- =========================
          MODAL: EDITAR PRODUCTO
     ========================== -->
+
     <div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="tituloModalEditar" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
+
+        <div class="
+                modal-dialog
+                modal-lg
+                modal-dialog-scrollable
+                modal-dialog-centered
+            ">
+
             <div class="modal-content">
 
                 <div class="modal-header">
-                    <h2 class="modal-title fs-5" id="tituloModalEditar">Editar producto</h2>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+
+                    <h2 class="modal-title fs-5" id="tituloModalEditar">
+                        Editar producto
+                    </h2>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar">
+                    </button>
+
                 </div>
 
+
                 <div class="modal-body">
+
                     <form id="formEditar">
+
                         <input type="hidden" id="editId">
 
+
                         <div class="row g-3">
+
                             <div class="col-md-6">
-                                <label for="editNombre" class="form-label">Nombre</label>
+
+                                <label for="editNombre" class="form-label">
+                                    Nombre
+                                </label>
+
                                 <input type="text" class="form-control" id="editNombre" required>
+
                             </div>
 
-                            <div class="col-md-6">
-                                <label for="editCategoria" class="form-label">Categoría</label>
-                                <input type="text" class="form-control" id="editCategoria" list="listaCategorias" required>
-                                <datalist id="listaCategorias"></datalist>
-                            </div>
 
                             <div class="col-md-6">
-                                <label for="editMarca" class="form-label">Marca</label>
+
+                                <label for="editCategoria" class="form-label">
+                                    Categoría
+                                </label>
+
+                                <input type="text" class="form-control" id="editCategoria" list="listaCategorias"
+                                    required>
+
+                                <datalist id="listaCategorias">
+                                </datalist>
+
+                            </div>
+
+
+                            <div class="col-md-6">
+
+                                <label for="editMarca" class="form-label">
+                                    Marca
+                                </label>
+
                                 <input type="text" class="form-control" id="editMarca">
+
                             </div>
 
+
                             <div class="col-md-6">
-                                <label for="editModelo" class="form-label">Modelo</label>
+
+                                <label for="editModelo" class="form-label">
+                                    Modelo
+                                </label>
+
                                 <input type="text" class="form-control" id="editModelo">
+
                             </div>
 
+
                             <div class="col-md-6">
-                                <label for="editPrecio" class="form-label">Precio (CLP)</label>
+
+                                <label for="editPrecio" class="form-label">
+                                    Precio (CLP)
+                                </label>
+
                                 <input type="number" min="0" class="form-control" id="editPrecio" required>
+
                             </div>
 
+
                             <div class="col-md-6">
-                                <label for="editStock" class="form-label">Stock</label>
+
+                                <label for="editStock" class="form-label">
+                                    Stock
+                                </label>
+
                                 <input type="number" min="0" class="form-control" id="editStock" required>
+
                             </div>
+
 
                             <div class="col-12">
-                                <label for="editDescripcion" class="form-label">Descripción</label>
+
+                                <label for="editDescripcion" class="form-label">
+                                    Descripción
+                                </label>
+
                                 <textarea class="form-control" id="editDescripcion" rows="2"></textarea>
+
                             </div>
+
                         </div>
+
 
                         <hr class="my-3">
 
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <label class="form-label mb-0">Especificaciones técnicas</label>
-                            <button type="button" id="btnAgregarEspec" class="btn btn-sm btn-outline-primary">
+
+                        <div class="
+                                d-flex
+                                justify-content-between
+                                align-items-center
+                                mb-2
+                            ">
+
+                            <label class="
+                                    form-label
+                                    mb-0
+                                ">
+                                Especificaciones técnicas
+                            </label>
+
+
+                            <button type="button" id="btnAgregarEspec" class="
+                                    btn
+                                    btn-sm
+                                    btn-outline-primary
+                                ">
                                 + Agregar
                             </button>
+
                         </div>
 
-                        <div id="listaEspecificaciones"></div>
+
+                        <div id="listaEspecificaciones">
+                        </div>
+
                     </form>
+
                 </div>
 
+
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+
+                    <button type="button" class="
+                            btn
+                            btn-outline-secondary
+                        " data-bs-dismiss="modal">
                         Cancelar
                     </button>
-                    <button type="button" id="btnGuardarProducto" class="btn btn-admin-principal">
+
+
+                    <button type="button" id="btnGuardarProducto" class="
+                            btn
+                            btn-admin-principal
+                        ">
                         Guardar cambios
                     </button>
+
                 </div>
 
             </div>
+
         </div>
+
     </div>
+
+
+    <!-- =========================
+         MODAL: DETALLE PEDIDO
+    ========================== -->
+
+    <div class="modal fade" id="modalPedido" tabindex="-1" aria-labelledby="tituloModalPedido" aria-hidden="true">
+
+        <div class="
+                modal-dialog
+                modal-lg
+                modal-dialog-scrollable
+                modal-dialog-centered
+            ">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <div>
+
+                        <h2 class="modal-title fs-5" id="tituloModalPedido">
+                            Detalle del pedido
+                        </h2>
+
+                        <small class="text-muted" id="fechaPedidoModal">
+                        </small>
+
+                    </div>
+
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar">
+                    </button>
+
+                </div>
+
+
+                <div class="modal-body">
+
+
+                    <!-- CLIENTE -->
+
+                    <h3 class="admin-modal-titulo">
+                        Cliente
+                    </h3>
+
+                    <div class="
+                            admin-detalle-grid
+                            mb-4
+                        " id="detalleCliente">
+                    </div>
+
+
+                    <!-- DIRECCIÓN -->
+
+                    <h3 class="admin-modal-titulo">
+                        Dirección de envío
+                    </h3>
+
+                    <div class="
+                            admin-detalle-grid
+                            mb-4
+                        " id="detalleDireccion">
+                    </div>
+
+
+                    <!-- PRODUCTOS -->
+
+                    <h3 class="admin-modal-titulo">
+                        Productos
+                    </h3>
+
+
+                    <div class="
+                            table-responsive
+                            mb-4
+                        ">
+
+                        <table class="
+                                table
+                                table-sm
+                            ">
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>
+                                        Producto
+                                    </th>
+
+                                    <th>
+                                        Cantidad
+                                    </th>
+
+                                    <th>
+                                        Precio
+                                    </th>
+
+                                    <th class="text-end">
+                                        Subtotal
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody id="detalleProductos">
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+
+                    <!-- PAGO -->
+
+                    <h3 class="admin-modal-titulo">
+                        Pago
+                    </h3>
+
+                    <div class="admin-detalle-grid" id="detallePago">
+                    </div>
+
+                </div>
+
+
+                <div class="
+                        modal-footer
+                        justify-content-between
+                    ">
+
+                    <strong>
+
+                        Total:
+
+                        <span id="detalleTotal">
+                            $0
+                        </span>
+
+                    </strong>
+
+
+                    <button type="button" class="
+                            btn
+                            btn-outline-secondary
+                        " data-bs-dismiss="modal">
+                        Cerrar
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         SCRIPTS
+    ========================== -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Deben cargarse antes del código del panel -->
     <script src="js/productos.js"></script>
+
     <script src="js/catalogo-datos.js"></script>
 
+
     <script>
-        // Catálogo actual (original + cambios guardados anteriormente)
-        let catalogoActual = obtenerCatalogo();
 
-        const cuerpoTabla = document.getElementById("cuerpoTabla");
-        const mensajeAdmin = document.getElementById("mensajeAdmin");
-        const listaEspecificaciones = document.getElementById("listaEspecificaciones");
-        const listaCategorias = document.getElementById("listaCategorias");
-        const formEditar = document.getElementById("formEditar");
+        /* =========================
+           DATOS
+        ========================== */
 
-        const modalEditar = new bootstrap.Modal(document.getElementById("modalEditar"));
+        let catalogoActual =
+            obtenerCatalogo();
 
-        function formatearPrecio(precio) {
-            return new Intl.NumberFormat("es-CL", {
-                style: "currency",
-                currency: "CLP",
-                maximumFractionDigits: 0
-            }).format(precio);
-        }
 
-        function mostrarMensaje(texto, tipo) {
-            const aviso = document.createElement("div");
-            aviso.className = `alert alert-${tipo || "success"} alert-dismissible fade show`;
-            aviso.setAttribute("role", "status");
-            aviso.textContent = texto;
+        const CLAVE_PEDIDOS =
+            "fc-pedidos";
 
-            const cerrar = document.createElement("button");
-            cerrar.type = "button";
-            cerrar.className = "btn-close";
-            cerrar.setAttribute("data-bs-dismiss", "alert");
-            cerrar.setAttribute("aria-label", "Cerrar");
 
-            aviso.appendChild(cerrar);
-            mensajeAdmin.replaceChildren(aviso);
-        }
+        function obtenerPedidosAdmin() {
 
-        // Llena el <datalist> con las categorías que ya existen en el catálogo
-        function actualizarCategorias() {
-            const categorias = [...new Set(catalogoActual.map(p => p.categoria))];
+            try {
 
-            listaCategorias.replaceChildren(
-                ...categorias.map(categoria => {
-                    const opcion = document.createElement("option");
-                    opcion.value = categoria;
-                    return opcion;
-                })
-            );
-        }
+                const datos =
+                    JSON.parse(
+                        localStorage.getItem(
+                            CLAVE_PEDIDOS
+                        )
+                    );
 
-        // Dibuja la tabla completa a partir de catalogoActual
-        function renderizarTabla() {
-            cuerpoTabla.replaceChildren();
-            actualizarCategorias();
 
-            if (catalogoActual.length === 0) {
-                const fila = document.createElement("tr");
-                fila.innerHTML = `
-                    <td colspan="5" class="text-center text-muted py-4">
-                        No hay productos en el catálogo.
-                    </td>
-                `;
-                cuerpoTabla.appendChild(fila);
-                return;
+                if (!Array.isArray(datos)) {
+                    return [];
+                }
+
+
+                return datos;
+
+            } catch {
+
+                return [];
+
             }
 
-            catalogoActual.forEach(producto => {
-                const fila = document.createElement("tr");
+        }
+
+
+        /* =========================
+           ELEMENTOS DEL DOM
+        ========================== */
+
+        const cuerpoTabla =
+            document.getElementById(
+                "cuerpoTabla"
+            );
+
+
+        const mensajeAdmin =
+            document.getElementById(
+                "mensajeAdmin"
+            );
+
+
+        const listaEspecificaciones =
+            document.getElementById(
+                "listaEspecificaciones"
+            );
+
+
+        const listaCategorias =
+            document.getElementById(
+                "listaCategorias"
+            );
+
+
+        const formEditar =
+            document.getElementById(
+                "formEditar"
+            );
+
+
+        const modalEditar =
+            new bootstrap.Modal(
+                document.getElementById(
+                    "modalEditar"
+                )
+            );
+
+
+        const modalPedido =
+            new bootstrap.Modal(
+                document.getElementById(
+                    "modalPedido"
+                )
+            );
+
+
+        /* =========================
+           UTILIDADES
+        ========================== */
+
+        function formatearPrecio(precio) {
+
+            return new Intl.NumberFormat(
+                "es-CL",
+                {
+                    style: "currency",
+                    currency: "CLP",
+                    maximumFractionDigits: 0
+                }
+            ).format(precio);
+
+        }
+
+
+        function mostrarMensaje(
+            texto,
+            tipo
+        ) {
+
+            const aviso =
+                document.createElement(
+                    "div"
+                );
+
+
+            aviso.className =
+                `alert alert-${tipo || "success"
+                } alert-dismissible fade show`;
+
+
+            aviso.setAttribute(
+                "role",
+                "status"
+            );
+
+
+            aviso.textContent =
+                texto;
+
+
+            const cerrar =
+                document.createElement(
+                    "button"
+                );
+
+
+            cerrar.type =
+                "button";
+
+
+            cerrar.className =
+                "btn-close";
+
+
+            cerrar.setAttribute(
+                "data-bs-dismiss",
+                "alert"
+            );
+
+
+            cerrar.setAttribute(
+                "aria-label",
+                "Cerrar"
+            );
+
+
+            aviso.appendChild(
+                cerrar
+            );
+
+
+            mensajeAdmin.replaceChildren(
+                aviso
+            );
+
+        }
+
+
+        /* =========================
+           NAVEGACIÓN
+        ========================== */
+
+        function mostrarSeccion(nombre) {
+
+            const secciones = {
+
+                resumen:
+                    document.getElementById(
+                        "seccionResumen"
+                    ),
+
+                productos:
+                    document.getElementById(
+                        "seccionProductos"
+                    ),
+
+                pedidos:
+                    document.getElementById(
+                        "seccionPedidos"
+                    )
+
+            };
+
+
+            Object
+                .values(secciones)
+                .forEach(seccion => {
+
+                    seccion.classList.add(
+                        "d-none"
+                    );
+
+                });
+
+
+            secciones[nombre]
+                .classList.remove(
+                    "d-none"
+                );
+
+
+            document
+                .querySelectorAll(
+                    ".admin-nav-btn"
+                )
+                .forEach(boton => {
+
+                    boton.classList.toggle(
+                        "active",
+                        boton.dataset.seccion
+                        === nombre
+                    );
+
+                });
+
+
+            if (nombre === "resumen") {
+
+                renderizarResumen();
+
+            }
+
+
+            if (nombre === "productos") {
+
+                renderizarTabla();
+
+            }
+
+
+            if (nombre === "pedidos") {
+
+                renderizarPedidos();
+
+            }
+
+        }
+
+
+        document
+            .querySelectorAll(
+                ".admin-nav-btn"
+            )
+            .forEach(boton => {
+
+                boton.addEventListener(
+                    "click",
+                    () => {
+
+                        mostrarSeccion(
+                            boton.dataset.seccion
+                        );
+
+                    }
+                );
+
+            });
+
+
+        document
+            .getElementById(
+                "btnVerTodosPedidos"
+            )
+            .addEventListener(
+                "click",
+                () => {
+
+                    mostrarSeccion(
+                        "pedidos"
+                    );
+
+                }
+            );
+
+
+        /* =========================
+           DASHBOARD
+        ========================== */
+
+        function renderizarResumen() {
+
+            const pedidos =
+                obtenerPedidosAdmin();
+
+
+            const totalVentas =
+                pedidos.reduce(
+                    (
+                        acumulado,
+                        pedido
+                    ) => {
+
+                        return (
+                            acumulado +
+                            Number(
+                                pedido.total || 0
+                            )
+                        );
+
+                    },
+                    0
+                );
+
+
+            const stockTotal =
+                catalogoActual.reduce(
+                    (
+                        acumulado,
+                        producto
+                    ) => {
+
+                        return (
+                            acumulado +
+                            Number(
+                                producto.stock || 0
+                            )
+                        );
+
+                    },
+                    0
+                );
+
+
+            document.getElementById(
+                "statProductos"
+            ).textContent =
+                catalogoActual.length;
+
+
+            document.getElementById(
+                "statPedidos"
+            ).textContent =
+                pedidos.length;
+
+
+            document.getElementById(
+                "statVentas"
+            ).textContent =
+                formatearPrecio(
+                    totalVentas
+                );
+
+
+            document.getElementById(
+                "statStock"
+            ).textContent =
+                stockTotal;
+
+
+            renderizarPedidosRecientes(
+                pedidos
+            );
+
+        }
+
+
+        function renderizarPedidosRecientes(
+            pedidos
+        ) {
+
+            const cuerpo =
+                document.getElementById(
+                    "pedidosRecientes"
+                );
+
+
+            cuerpo.replaceChildren();
+
+
+            if (pedidos.length === 0) {
+
+                cuerpo.innerHTML = `
+                    <tr>
+
+                        <td
+                            colspan="5"
+                            class="
+                                text-center
+                                text-muted
+                                py-4
+                            "
+                        >
+                            Todavía no hay pedidos.
+                        </td>
+
+                    </tr>
+                `;
+
+                return;
+
+            }
+
+
+            const recientes =
+                [...pedidos]
+                    .reverse()
+                    .slice(0, 5);
+
+
+            recientes.forEach(
+                pedido => {
+
+                    const fila =
+                        document.createElement(
+                            "tr"
+                        );
+
+
+                    fila.innerHTML = `
+                        <td>
+                            <strong>
+                                ${pedido.id}
+                            </strong>
+                        </td>
+
+                        <td>
+                            ${pedido.cliente.nombre}
+                            ${pedido.cliente.apellido}
+                        </td>
+
+                        <td>
+                            ${pedido.fecha}
+                        </td>
+
+                        <td>
+                            ${formatearPrecio(
+                        pedido.total
+                    )}
+                        </td>
+
+                        <td>
+                            <span
+                                class="
+                                    admin-estado
+                                    admin-estado-pagado
+                                "
+                            >
+                                ${pedido.estado}
+                            </span>
+                        </td>
+                    `;
+
+
+                    cuerpo.appendChild(
+                        fila
+                    );
+
+                }
+            );
+
+        }
+
+
+        /* =========================
+           PRODUCTOS
+        ========================== */
+
+        function actualizarCategorias() {
+
+            const categorias = [
+                ...new Set(
+                    catalogoActual.map(
+                        producto =>
+                            producto.categoria
+                    )
+                )
+            ];
+
+
+            listaCategorias.replaceChildren(
+                ...categorias.map(
+                    categoria => {
+
+                        const opcion =
+                            document.createElement(
+                                "option"
+                            );
+
+                        opcion.value =
+                            categoria;
+
+                        return opcion;
+
+                    }
+                )
+            );
+
+        }
+
+
+        function renderizarTabla() {
+
+            cuerpoTabla.replaceChildren();
+
+            actualizarCategorias();
+
+
+            if (
+                catalogoActual.length === 0
+            ) {
+
+                const fila =
+                    document.createElement(
+                        "tr"
+                    );
+
 
                 fila.innerHTML = `
-                    <td>
-                        <div class="d-flex align-items-center gap-2">
-                            <img class="admin-miniatura" alt="" src="${producto.imagen || ""}"
-                                onerror="this.style.visibility='hidden'">
-                            <div>
-                                <div class="fw-semibold">${producto.nombre}</div>
-                                <small class="text-muted">
-                                    ${producto.marca || ""} ${producto.modelo || ""}
-                                </small>
-                            </div>
-                        </div>
-                    </td>
-                    <td>${producto.categoria || ""}</td>
-                    <td>${formatearPrecio(producto.precio || 0)}</td>
-                    <td>${Number.isInteger(producto.stock) ? producto.stock : 0}</td>
-                    <td class="text-end">
-                        <button type="button" class="btn btn-sm btn-outline-primary me-2 btn-editar"
-                            data-id="${producto.id}">
-                            Editar
-                        </button>
-                        <button type="button" class="btn btn-sm btn-outline-danger btn-eliminar"
-                            data-id="${producto.id}">
-                            Eliminar
-                        </button>
+                    <td
+                        colspan="5"
+                        class="
+                            text-center
+                            text-muted
+                            py-4
+                        "
+                    >
+                        No hay productos
+                        en el catálogo.
                     </td>
                 `;
 
-                cuerpoTabla.appendChild(fila);
-            });
 
-            cuerpoTabla.querySelectorAll(".btn-editar").forEach(boton => {
-                boton.addEventListener("click", () => abrirEdicion(Number(boton.dataset.id)));
-            });
+                cuerpoTabla.appendChild(
+                    fila
+                );
 
-            cuerpoTabla.querySelectorAll(".btn-eliminar").forEach(boton => {
-                boton.addEventListener("click", () => eliminarProducto(Number(boton.dataset.id)));
-            });
+                return;
+
+            }
+
+
+            catalogoActual.forEach(
+                producto => {
+
+                    const fila =
+                        document.createElement(
+                            "tr"
+                        );
+
+
+                    fila.innerHTML = `
+                        <td>
+
+                            <div
+                                class="
+                                    d-flex
+                                    align-items-center
+                                    gap-2
+                                "
+                            >
+
+                                <img
+                                    class="admin-miniatura"
+                                    alt=""
+                                    src="${producto.imagen ||
+                        ""
+                        }"
+                                    onerror="
+                                        this.style.visibility=
+                                        'hidden'
+                                    "
+                                >
+
+                                <div>
+
+                                    <div
+                                        class="
+                                            fw-semibold
+                                        "
+                                    >
+                                        ${producto.nombre}
+                                    </div>
+
+                                    <small
+                                        class="
+                                            text-muted
+                                        "
+                                    >
+                                        ${producto.marca ||
+                        ""
+                        }
+
+                                        ${producto.modelo ||
+                        ""
+                        }
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+                        </td>
+
+                        <td>
+                            ${producto.categoria ||
+                        ""
+                        }
+                        </td>
+
+                        <td>
+                            ${formatearPrecio(
+                            producto.precio ||
+                            0
+                        )}
+                        </td>
+
+                        <td>
+                            ${Number.isInteger(
+                            producto.stock
+                        )
+                            ? producto.stock
+                            : 0
+                        }
+                        </td>
+
+                        <td class="text-end">
+
+                            <button
+                                type="button"
+                                class="
+                                    btn
+                                    btn-sm
+                                    btn-outline-primary
+                                    me-2
+                                    btn-editar
+                                "
+                                data-id="${producto.id
+                        }"
+                            >
+                                Editar
+                            </button>
+
+                            <button
+                                type="button"
+                                class="
+                                    btn
+                                    btn-sm
+                                    btn-outline-danger
+                                    btn-eliminar
+                                "
+                                data-id="${producto.id
+                        }"
+                            >
+                                Eliminar
+                            </button>
+
+                        </td>
+                    `;
+
+
+                    cuerpoTabla.appendChild(
+                        fila
+                    );
+
+                }
+            );
+
+
+            cuerpoTabla
+                .querySelectorAll(
+                    ".btn-editar"
+                )
+                .forEach(boton => {
+
+                    boton.addEventListener(
+                        "click",
+                        () => {
+
+                            abrirEdicion(
+                                Number(
+                                    boton.dataset.id
+                                )
+                            );
+
+                        }
+                    );
+
+                });
+
+
+            cuerpoTabla
+                .querySelectorAll(
+                    ".btn-eliminar"
+                )
+                .forEach(boton => {
+
+                    boton.addEventListener(
+                        "click",
+                        () => {
+
+                            eliminarProducto(
+                                Number(
+                                    boton.dataset.id
+                                )
+                            );
+
+                        }
+                    );
+
+                });
+
         }
 
-        // Crea una fila con dos campos (nombre y valor) para una especificación
-        function crearFilaEspecificacion(nombre, valor) {
-            const fila = document.createElement("div");
-            fila.className = "row g-2 align-items-center mb-2 fila-especificacion";
+
+        function crearFilaEspecificacion(
+            nombre,
+            valor
+        ) {
+
+            const fila =
+                document.createElement(
+                    "div"
+                );
+
+
+            fila.className =
+                "row g-2 align-items-center mb-2 fila-especificacion";
+
 
             fila.innerHTML = `
                 <div class="col-5">
-                    <input type="text" class="form-control form-control-sm espec-nombre"
-                        placeholder="Ej: Frecuencia" value="${nombre || ""}">
+
+                    <input
+                        type="text"
+                        class="
+                            form-control
+                            form-control-sm
+                            espec-nombre
+                        "
+                        placeholder="Ej: Frecuencia"
+                        value="${nombre || ""}"
+                    >
+
                 </div>
+
+
                 <div class="col-5">
-                    <input type="text" class="form-control form-control-sm espec-valor"
-                        placeholder="Ej: 3500-5300 MHz" value="${valor || ""}">
+
+                    <input
+                        type="text"
+                        class="
+                            form-control
+                            form-control-sm
+                            espec-valor
+                        "
+                        placeholder="Ej: 3500-5300 MHz"
+                        value="${valor || ""}"
+                    >
+
                 </div>
+
+
                 <div class="col-2">
-                    <button type="button" class="btn btn-sm btn-outline-danger w-100 btn-quitar-espec">
+
+                    <button
+                        type="button"
+                        class="
+                            btn
+                            btn-sm
+                            btn-outline-danger
+                            w-100
+                            btn-quitar-espec
+                        "
+                    >
                         ✕
                     </button>
+
                 </div>
             `;
 
-            fila.querySelector(".btn-quitar-espec").addEventListener("click", () => fila.remove());
+
+            fila
+                .querySelector(
+                    ".btn-quitar-espec"
+                )
+                .addEventListener(
+                    "click",
+                    () => {
+
+                        fila.remove();
+
+                    }
+                );
+
 
             return fila;
+
         }
 
-        document.getElementById("btnAgregarEspec").addEventListener("click", () => {
-            listaEspecificaciones.appendChild(crearFilaEspecificacion("", ""));
-        });
 
-        // Abre el modal ya cargado con los datos del producto elegido
-        function abrirEdicion(id) {
-            const producto = catalogoActual.find(p => p.id === id);
-            if (!producto) return;
+        document
+            .getElementById(
+                "btnAgregarEspec"
+            )
+            .addEventListener(
+                "click",
+                () => {
 
-            document.getElementById("editId").value = producto.id;
-            document.getElementById("editNombre").value = producto.nombre || "";
-            document.getElementById("editCategoria").value = producto.categoria || "";
-            document.getElementById("editMarca").value = producto.marca || "";
-            document.getElementById("editModelo").value = producto.modelo || "";
-            document.getElementById("editPrecio").value = producto.precio || 0;
-            document.getElementById("editStock").value = producto.stock || 0;
-            document.getElementById("editDescripcion").value = producto.descripcion || "";
+                    listaEspecificaciones
+                        .appendChild(
+                            crearFilaEspecificacion(
+                                "",
+                                ""
+                            )
+                        );
 
-            const especificaciones = producto.especificaciones || {};
-            listaEspecificaciones.replaceChildren(
-                ...Object.entries(especificaciones)
-                    .map(([nombre, valor]) => crearFilaEspecificacion(nombre, valor))
+                }
             );
 
-            if (Object.keys(especificaciones).length === 0) {
-                listaEspecificaciones.appendChild(crearFilaEspecificacion("", ""));
+
+        function abrirEdicion(id) {
+
+            const producto =
+                catalogoActual.find(
+                    producto =>
+                        producto.id === id
+                );
+
+
+            if (!producto) {
+                return;
             }
 
+
+            document.getElementById(
+                "editId"
+            ).value =
+                producto.id;
+
+
+            document.getElementById(
+                "editNombre"
+            ).value =
+                producto.nombre || "";
+
+
+            document.getElementById(
+                "editCategoria"
+            ).value =
+                producto.categoria || "";
+
+
+            document.getElementById(
+                "editMarca"
+            ).value =
+                producto.marca || "";
+
+
+            document.getElementById(
+                "editModelo"
+            ).value =
+                producto.modelo || "";
+
+
+            document.getElementById(
+                "editPrecio"
+            ).value =
+                producto.precio || 0;
+
+
+            document.getElementById(
+                "editStock"
+            ).value =
+                producto.stock || 0;
+
+
+            document.getElementById(
+                "editDescripcion"
+            ).value =
+                producto.descripcion || "";
+
+
+            const especificaciones =
+                producto.especificaciones ||
+                {};
+
+
+            listaEspecificaciones
+                .replaceChildren(
+                    ...Object
+                        .entries(
+                            especificaciones
+                        )
+                        .map(
+                            (
+                                [
+                                    nombre,
+                                    valor
+                                ]
+                            ) => {
+
+                                return (
+                                    crearFilaEspecificacion(
+                                        nombre,
+                                        valor
+                                    )
+                                );
+
+                            }
+                        )
+                );
+
+
+            if (
+                Object.keys(
+                    especificaciones
+                ).length === 0
+            ) {
+
+                listaEspecificaciones
+                    .appendChild(
+                        crearFilaEspecificacion(
+                            "",
+                            ""
+                        )
+                    );
+
+            }
+
+
             modalEditar.show();
+
         }
 
-        // Guarda los cambios del formulario en catalogoActual y en localStorage
-        document.getElementById("btnGuardarProducto").addEventListener("click", () => {
-            if (!formEditar.reportValidity()) return;
 
-            const id = Number(document.getElementById("editId").value);
-            const producto = catalogoActual.find(p => p.id === id);
-            if (!producto) return;
+        document
+            .getElementById(
+                "btnGuardarProducto"
+            )
+            .addEventListener(
+                "click",
+                () => {
 
-            producto.nombre = document.getElementById("editNombre").value.trim();
-            producto.categoria = document.getElementById("editCategoria").value.trim();
-            producto.marca = document.getElementById("editMarca").value.trim();
-            producto.modelo = document.getElementById("editModelo").value.trim();
-            producto.precio = Number(document.getElementById("editPrecio").value);
-            producto.stock = Number(document.getElementById("editStock").value);
-            producto.descripcion = document.getElementById("editDescripcion").value.trim();
+                    if (
+                        !formEditar.reportValidity()
+                    ) {
+                        return;
+                    }
 
-            const especificaciones = {};
-            listaEspecificaciones.querySelectorAll(".fila-especificacion").forEach(fila => {
-                const nombreEspec = fila.querySelector(".espec-nombre").value.trim();
-                const valorEspec = fila.querySelector(".espec-valor").value.trim();
 
-                if (nombreEspec !== "" && valorEspec !== "") {
-                    especificaciones[nombreEspec] = valorEspec;
+                    const id =
+                        Number(
+                            document
+                                .getElementById(
+                                    "editId"
+                                )
+                                .value
+                        );
+
+
+                    const producto =
+                        catalogoActual.find(
+                            producto =>
+                                producto.id === id
+                        );
+
+
+                    if (!producto) {
+                        return;
+                    }
+
+
+                    producto.nombre =
+                        document
+                            .getElementById(
+                                "editNombre"
+                            )
+                            .value
+                            .trim();
+
+
+                    producto.categoria =
+                        document
+                            .getElementById(
+                                "editCategoria"
+                            )
+                            .value
+                            .trim();
+
+
+                    producto.marca =
+                        document
+                            .getElementById(
+                                "editMarca"
+                            )
+                            .value
+                            .trim();
+
+
+                    producto.modelo =
+                        document
+                            .getElementById(
+                                "editModelo"
+                            )
+                            .value
+                            .trim();
+
+
+                    producto.precio =
+                        Number(
+                            document
+                                .getElementById(
+                                    "editPrecio"
+                                )
+                                .value
+                        );
+
+
+                    producto.stock =
+                        Number(
+                            document
+                                .getElementById(
+                                    "editStock"
+                                )
+                                .value
+                        );
+
+
+                    producto.descripcion =
+                        document
+                            .getElementById(
+                                "editDescripcion"
+                            )
+                            .value
+                            .trim();
+
+
+                    const especificaciones =
+                        {};
+
+
+                    listaEspecificaciones
+                        .querySelectorAll(
+                            ".fila-especificacion"
+                        )
+                        .forEach(
+                            fila => {
+
+                                const nombreEspec =
+                                    fila
+                                        .querySelector(
+                                            ".espec-nombre"
+                                        )
+                                        .value
+                                        .trim();
+
+
+                                const valorEspec =
+                                    fila
+                                        .querySelector(
+                                            ".espec-valor"
+                                        )
+                                        .value
+                                        .trim();
+
+
+                                if (
+                                    nombreEspec !== "" &&
+                                    valorEspec !== ""
+                                ) {
+
+                                    especificaciones[
+                                        nombreEspec
+                                    ] =
+                                        valorEspec;
+
+                                }
+
+                            }
+                        );
+
+
+                    producto.especificaciones =
+                        especificaciones;
+
+
+                    guardarCatalogo(
+                        catalogoActual
+                    );
+
+
+                    renderizarTabla();
+
+                    renderizarResumen();
+
+                    modalEditar.hide();
+
+
+                    mostrarMensaje(
+                        `"${producto.nombre}" se actualizó correctamente.`,
+                        "success"
+                    );
+
                 }
-            });
-            producto.especificaciones = especificaciones;
-
-            guardarCatalogo(catalogoActual);
-            renderizarTabla();
-            modalEditar.hide();
-            mostrarMensaje(`"${producto.nombre}" se actualizó correctamente.`, "success");
-        });
-
-        // Elimina un producto (con confirmación) y guarda el catálogo resultante
-        function eliminarProducto(id) {
-            const producto = catalogoActual.find(p => p.id === id);
-            if (!producto) return;
-
-            const confirmar = window.confirm(
-                `¿Eliminar "${producto.nombre}" del catálogo? Esta acción no se puede deshacer.`
             );
-            if (!confirmar) return;
 
-            catalogoActual = catalogoActual.filter(p => p.id !== id);
-            guardarCatalogo(catalogoActual);
+
+        function eliminarProducto(id) {
+
+            const producto =
+                catalogoActual.find(
+                    producto =>
+                        producto.id === id
+                );
+
+
+            if (!producto) {
+                return;
+            }
+
+
+            const confirmar =
+                window.confirm(
+                    `¿Eliminar "${producto.nombre}" del catálogo? Esta acción no se puede deshacer.`
+                );
+
+
+            if (!confirmar) {
+                return;
+            }
+
+
+            catalogoActual =
+                catalogoActual.filter(
+                    producto =>
+                        producto.id !== id
+                );
+
+
+            guardarCatalogo(
+                catalogoActual
+            );
+
+
             renderizarTabla();
-            mostrarMensaje(`"${producto.nombre}" se eliminó del catálogo.`, "warning");
+
+            renderizarResumen();
+
+
+            mostrarMensaje(
+                `"${producto.nombre}" se eliminó del catálogo.`,
+                "warning"
+            );
+
         }
 
-        // Vuelve al catálogo original de js/productos.js
-        document.getElementById("btnRestablecer").addEventListener("click", () => {
-            const confirmar = window.confirm(
-                "Esto borrará todos tus cambios y volverá al catálogo original. ¿Continuar?"
+
+        document
+            .getElementById(
+                "btnRestablecer"
+            )
+            .addEventListener(
+                "click",
+                () => {
+
+                    const confirmar =
+                        window.confirm(
+                            "Esto borrará todos tus cambios y volverá al catálogo original. ¿Continuar?"
+                        );
+
+
+                    if (!confirmar) {
+                        return;
+                    }
+
+
+                    restablecerCatalogo();
+
+
+                    catalogoActual =
+                        obtenerCatalogo();
+
+
+                    renderizarTabla();
+
+                    renderizarResumen();
+
+
+                    mostrarMensaje(
+                        "El catálogo volvió a sus valores originales.",
+                        "success"
+                    );
+
+                }
             );
-            if (!confirmar) return;
 
-            restablecerCatalogo();
-            catalogoActual = obtenerCatalogo();
-            renderizarTabla();
-            mostrarMensaje("El catálogo volvió a sus valores originales.", "success");
-        });
 
-        // Cerrar sesión de administrador
-        document.getElementById("cerrarSesion").addEventListener("click", () => {
-            sessionStorage.removeItem("rolActivo");
-            window.location.href = "login.html";
-        });
+        /* =========================
+           PEDIDOS
+        ========================== */
+
+        function renderizarPedidos() {
+
+            const cuerpo =
+                document.getElementById(
+                    "cuerpoPedidos"
+                );
+
+
+            const pedidos =
+                obtenerPedidosAdmin();
+
+
+            cuerpo.replaceChildren();
+
+
+            if (pedidos.length === 0) {
+
+                cuerpo.innerHTML = `
+                    <tr>
+
+                        <td
+                            colspan="7"
+                            class="
+                                text-center
+                                text-muted
+                                py-4
+                            "
+                        >
+                            Todavía no hay
+                            pedidos registrados.
+                        </td>
+
+                    </tr>
+                `;
+
+                return;
+
+            }
+
+
+            [...pedidos]
+                .reverse()
+                .forEach(
+                    pedido => {
+
+                        const fila =
+                            document.createElement(
+                                "tr"
+                            );
+
+
+                        const productosPedido =
+                            Array.isArray(
+                                pedido.productos
+                            )
+                                ? pedido.productos
+                                : [];
+
+
+                        const cantidadProductos =
+                            productosPedido.reduce(
+                                (
+                                    total,
+                                    producto
+                                ) => {
+
+                                    return (
+                                        total +
+                                        Number(
+                                            producto.cantidad ||
+                                            0
+                                        )
+                                    );
+
+                                },
+                                0
+                            );
+
+
+                        fila.innerHTML = `
+                            <td>
+                                <strong>
+                                    ${pedido.id}
+                                </strong>
+                            </td>
+
+                            <td>
+
+                                <div
+                                    class="
+                                        fw-semibold
+                                    "
+                                >
+                                    ${pedido.cliente
+                                ?.nombre ||
+                            ""
+                            }
+
+                                    ${pedido.cliente
+                                ?.apellido ||
+                            ""
+                            }
+                                </div>
+
+                                <small
+                                    class="
+                                        text-muted
+                                    "
+                                >
+                                    ${pedido.cliente
+                                ?.correo ||
+                            ""
+                            }
+                                </small>
+
+                            </td>
+
+                            <td>
+                                ${pedido.fecha || ""}
+                            </td>
+
+                            <td>
+                                ${cantidadProductos}
+                            </td>
+
+                            <td>
+                                <strong>
+                                    ${formatearPrecio(
+                                pedido.total ||
+                                0
+                            )}
+                                </strong>
+                            </td>
+
+                            <td>
+
+                                <span
+                                    class="
+                                        admin-estado
+                                        admin-estado-pagado
+                                    "
+                                >
+                                    ${pedido.estado ||
+                            "Pagado"
+                            }
+                                </span>
+
+                            </td>
+
+                            <td class="text-end">
+
+                                <button
+                                    type="button"
+                                    class="
+                                        btn
+                                        btn-sm
+                                        btn-outline-primary
+                                        btn-ver-pedido
+                                    "
+                                    data-id="${pedido.id
+                            }"
+                                >
+                                    Ver detalle
+                                </button>
+
+                            </td>
+                        `;
+
+
+                        cuerpo.appendChild(
+                            fila
+                        );
+
+                    }
+                );
+
+
+            cuerpo
+                .querySelectorAll(
+                    ".btn-ver-pedido"
+                )
+                .forEach(
+                    boton => {
+
+                        boton.addEventListener(
+                            "click",
+                            () => {
+
+                                abrirPedido(
+                                    boton.dataset.id
+                                );
+
+                            }
+                        );
+
+                    }
+                );
+
+        }
+
+
+        /* =========================
+           DETALLE DEL PEDIDO
+        ========================== */
+
+        function abrirPedido(id) {
+
+            const pedidos =
+                obtenerPedidosAdmin();
+
+
+            const pedido =
+                pedidos.find(
+                    pedido =>
+                        pedido.id === id
+                );
+
+
+            if (!pedido) {
+                return;
+            }
+
+
+            document.getElementById(
+                "tituloModalPedido"
+            ).textContent =
+                `Pedido ${pedido.id}`;
+
+
+            document.getElementById(
+                "fechaPedidoModal"
+            ).textContent =
+                pedido.fecha || "";
+
+
+            /* CLIENTE */
+
+            document.getElementById(
+                "detalleCliente"
+            ).innerHTML = `
+
+                <div
+                    class="
+                        admin-detalle-item
+                    "
+                >
+
+                    <small>
+                        Nombre
+                    </small>
+
+                    <strong>
+                        ${pedido.cliente
+                    ?.nombre ||
+                ""
+                }
+
+                        ${pedido.cliente
+                    ?.apellido ||
+                ""
+                }
+                    </strong>
+
+                </div>
+
+
+                <div
+                    class="
+                        admin-detalle-item
+                    "
+                >
+
+                    <small>
+                        RUT
+                    </small>
+
+                    <strong>
+                        ${pedido.cliente
+                    ?.rut ||
+                "No indicado"
+                }
+                    </strong>
+
+                </div>
+
+
+                <div
+                    class="
+                        admin-detalle-item
+                    "
+                >
+
+                    <small>
+                        Correo
+                    </small>
+
+                    <strong>
+                        ${pedido.cliente
+                    ?.correo ||
+                "No indicado"
+                }
+                    </strong>
+
+                </div>
+
+
+                <div
+                    class="
+                        admin-detalle-item
+                    "
+                >
+
+                    <small>
+                        Teléfono
+                    </small>
+
+                    <strong>
+                        ${pedido.cliente
+                    ?.telefono ||
+                "No indicado"
+                }
+                    </strong>
+
+                </div>
+
+            `;
+
+
+            /* DIRECCIÓN */
+
+            document.getElementById(
+                "detalleDireccion"
+            ).innerHTML = `
+
+                <div
+                    class="
+                        admin-detalle-item
+                    "
+                >
+
+                    <small>
+                        Región
+                    </small>
+
+                    <strong>
+                        ${pedido.direccion
+                    ?.region ||
+                "No indicada"
+                }
+                    </strong>
+
+                </div>
+
+
+                <div
+                    class="
+                        admin-detalle-item
+                    "
+                >
+
+                    <small>
+                        Comuna
+                    </small>
+
+                    <strong>
+                        ${pedido.direccion
+                    ?.comuna ||
+                "No indicada"
+                }
+                    </strong>
+
+                </div>
+
+
+                <div
+                    class="
+                        admin-detalle-item
+                    "
+                >
+
+                    <small>
+                        Dirección
+                    </small>
+
+                    <strong>
+
+                        ${pedido.direccion
+                    ?.calle ||
+                ""
+                }
+
+                        ${pedido.direccion
+                    ?.numero ||
+                ""
+                }
+
+                    </strong>
+
+                </div>
+
+
+                <div
+                    class="
+                        admin-detalle-item
+                    "
+                >
+
+                    <small>
+                        Departamento
+                    </small>
+
+                    <strong>
+                        ${pedido.direccion
+                    ?.departamento ||
+                "No indicado"
+                }
+                    </strong>
+
+                </div>
+
+
+                <div
+                    class="
+                        admin-detalle-item
+                    "
+                >
+
+                    <small>
+                        Referencia
+                    </small>
+
+                    <strong>
+                        ${pedido.direccion
+                    ?.referencia ||
+                "No indicada"
+                }
+                    </strong>
+
+                </div>
+
+            `;
+
+
+            /* PRODUCTOS */
+
+            const cuerpoProductos =
+                document.getElementById(
+                    "detalleProductos"
+                );
+
+
+            cuerpoProductos.replaceChildren();
+
+
+            const productosPedido =
+                Array.isArray(
+                    pedido.productos
+                )
+                    ? pedido.productos
+                    : [];
+
+
+            productosPedido.forEach(
+                producto => {
+
+                    const fila =
+                        document.createElement(
+                            "tr"
+                        );
+
+
+                    fila.innerHTML = `
+
+                        <td>
+                            ${producto.nombre}
+                        </td>
+
+                        <td>
+                            ${producto.cantidad}
+                        </td>
+
+                        <td>
+                            ${formatearPrecio(
+                        producto.precio ||
+                        0
+                    )}
+                        </td>
+
+                        <td class="text-end">
+                            ${formatearPrecio(
+                        producto.subtotal ||
+                        0
+                    )}
+                        </td>
+
+                    `;
+
+
+                    cuerpoProductos
+                        .appendChild(
+                            fila
+                        );
+
+                }
+            );
+
+
+            /* PAGO */
+
+            document.getElementById(
+                "detallePago"
+            ).innerHTML = `
+
+                <div
+                    class="
+                        admin-detalle-item
+                    "
+                >
+
+                    <small>
+                        Método
+                    </small>
+
+                    <strong>
+                        ${pedido.pago
+                    ?.metodo ||
+                "No indicado"
+                }
+                    </strong>
+
+                </div>
+
+
+                <div
+                    class="
+                        admin-detalle-item
+                    "
+                >
+
+                    <small>
+                        Titular
+                    </small>
+
+                    <strong>
+                        ${pedido.pago
+                    ?.titular ||
+                "No indicado"
+                }
+                    </strong>
+
+                </div>
+
+
+                <div
+                    class="
+                        admin-detalle-item
+                    "
+                >
+
+                    <small>
+                        Tarjeta
+                    </small>
+
+                    <strong>
+                        ••••
+                        ${pedido.pago
+                    ?.ultimos4 ||
+                "----"
+                }
+                    </strong>
+
+                </div>
+
+
+                <div
+                    class="
+                        admin-detalle-item
+                    "
+                >
+
+                    <small>
+                        Estado
+                    </small>
+
+                    <strong>
+                        ${pedido.estado ||
+                "Pagado"
+                }
+                    </strong>
+
+                </div>
+
+            `;
+
+
+            document.getElementById(
+                "detalleTotal"
+            ).textContent =
+                formatearPrecio(
+                    pedido.total || 0
+                );
+
+
+            modalPedido.show();
+
+        }
+
+
+        /* =========================
+           CERRAR SESIÓN
+        ========================== */
+
+        document
+            .getElementById(
+                "cerrarSesion"
+            )
+            .addEventListener(
+                "click",
+                () => {
+
+                    sessionStorage.removeItem(
+                        "rolActivo"
+                    );
+
+
+                    window.location.href =
+                        "login.html";
+
+                }
+            );
+
+
+        /* =========================
+           INICIALIZACIÓN
+        ========================== */
 
         renderizarTabla();
+
+        renderizarResumen();
+
     </script>
 
 </body>
+
 </html>

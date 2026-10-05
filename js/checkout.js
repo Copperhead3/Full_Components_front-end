@@ -325,9 +325,72 @@ function mostrarResumenCheckout() {
 
 }
 
-/* ========================================
-   CONFIRMAR COMPRA
-======================================== */
+// ==========================================
+// VALIDAR STOCK ANTES DE REALIZAR LA COMPRA
+// ==========================================
+
+function validarStockCarrito(carrito) {
+
+    for (const item of carrito) {
+
+        const producto = buscarProducto(item.id);
+
+        if (!producto) {
+            alert(
+                "Uno de los productos de tu carrito ya no está disponible."
+            );
+            return false;
+        }
+
+        if (producto.stock <= 0) {
+            alert(
+                `"${producto.nombre}" se encuentra agotado.`
+            );
+            return false;
+        }
+
+        if (item.cantidad > producto.stock) {
+            alert(
+                `No hay suficiente stock de "${producto.nombre}".\n\n` +
+                `Solicitado: ${item.cantidad}\n` +
+                `Disponible: ${producto.stock}`
+            );
+            return false;
+        }
+    }
+
+    return true;
+}
+
+
+// ==========================================
+// DESCONTAR STOCK DESPUÉS DE LA COMPRA
+// ==========================================
+
+function descontarStock(carrito) {
+
+    const catalogo = obtenerCatalogo();
+
+    carrito.forEach(item => {
+
+        const producto = catalogo.find(
+            producto =>
+                Number(producto.id) ===
+                Number(item.id)
+        );
+
+        if (!producto) {
+            return;
+        }
+
+        producto.stock =
+            Number(producto.stock) -
+            Number(item.cantidad);
+    });
+
+    guardarCatalogo(catalogo);
+}
+
 
 function confirmarCompra(evento) {
 
@@ -368,6 +431,15 @@ function confirmarCompra(evento) {
         window.location.href =
             "carrito.html";
 
+        return;
+    }
+
+    /*
+ * Validar nuevamente el stock antes
+ * de procesar la compra.
+ */
+
+    if (!validarStockCarrito(carrito)) {
         return;
     }
 
@@ -612,6 +684,8 @@ function confirmarCompra(evento) {
      */
 
     guardarPedido(pedido);
+
+    descontarStock(carrito);
 
 
     /*

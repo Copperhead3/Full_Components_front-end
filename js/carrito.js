@@ -2,15 +2,21 @@
 
 const CLAVE_CARRITO = "fullcomponents-carrito-v2";
 
-const catalogoCarrito =
-    typeof obtenerCatalogo === "function"
-        ? obtenerCatalogo()
-        : productos;
 
 function buscarProducto(id) {
-    return catalogoCarrito.find(
-        producto => Number(producto.id) === Number(id)
+
+    const catalogo =
+        typeof obtenerCatalogo === "function"
+            ? obtenerCatalogo()
+            : productos;
+
+
+    return catalogo.find(
+        producto =>
+            Number(producto.id) ===
+            Number(id)
     );
+
 }
 
 function obtenerCarrito() {
@@ -522,49 +528,3 @@ document.addEventListener(
     }
 );
 
-document.getElementById(
-    "vaciar-carrito"
-).addEventListener(
-    "click",
-    vaciarCarrito
-);
-
-/*
- * Compatibilidad con los data-id antiguos
- * de las recomendaciones de carrito.html.
- */
-const idsAntiguos = {
-    "corsair-rm750e": 15,
-    "gabinete-neutron": 13,
-    "intel-i9": 3
-};
-
-document.querySelectorAll(
-    ".btn-recomendacion"
-).forEach(boton => {
-    boton.addEventListener(
-        "click",
-        () => {
-            const id =
-                idsAntiguos[
-                boton.dataset.id
-                ] ??
-                Number(
-                    boton.dataset.id
-                );
-
-            agregarAlCarrito(id);
-        }
-    );
-});
-
-window.addEventListener(
-    "pageshow",
-    renderizarCarrito
-);
-
-window.addEventListener(
-    "storage",
-    renderizarCarrito
-);
-    
