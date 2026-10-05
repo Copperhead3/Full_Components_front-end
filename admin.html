@@ -161,6 +161,10 @@
                     Pedidos
                 </button>
 
+                <button type="button" class="admin-nav-btn" data-seccion="usuarios">
+                    Usuarios
+                </button>
+
             </div>
 
 
@@ -587,6 +591,67 @@
 
             </section>
 
+            <!-- =========================
+     USUARIOS
+========================== -->
+
+            <section id="seccionUsuarios" class="admin-seccion d-none">
+
+                <div class="admin-header">
+
+                    <div>
+
+                        <h1>
+                            Usuarios registrados
+                        </h1>
+
+                        <p>
+                            Revisa las cuentas registradas
+                            en FullComponents Store.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="
+            table-responsive
+            admin-tabla-wrap
+            shadow-sm
+        ">
+
+                    <table class="table admin-tabla mb-0">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>ID</th>
+
+                                <th>Usuario</th>
+
+                                <th>Correo</th>
+
+                                <th>Fecha de registro</th>
+
+                                <th>Rol</th>
+
+                                <th>Estado</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="cuerpoUsuarios">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
         </div>
 
     </main>
@@ -970,6 +1035,8 @@
         const CLAVE_PEDIDOS =
             "fc-pedidos";
 
+        const CLAVE_USUARIOS = "usuarios";
+
 
         function obtenerPedidosAdmin() {
 
@@ -979,6 +1046,37 @@
                     JSON.parse(
                         localStorage.getItem(
                             CLAVE_PEDIDOS
+                        )
+                    );
+
+
+                if (!Array.isArray(datos)) {
+                    return [];
+                }
+
+
+                return datos;
+
+            } catch {
+
+                return [];
+
+            }
+
+        }
+
+        // ==========================================
+        // OBTENER USUARIOS REGISTRADOS
+        // ==========================================
+
+        function obtenerUsuariosAdmin() {
+
+            try {
+
+                const datos =
+                    JSON.parse(
+                        localStorage.getItem(
+                            CLAVE_USUARIOS
                         )
                     );
 
@@ -1152,13 +1250,17 @@
                 pedidos:
                     document.getElementById(
                         "seccionPedidos"
+                    ),
+
+                usuarios:
+                    document.getElementById(
+                        "seccionUsuarios"
                     )
 
             };
 
 
-            Object
-                .values(secciones)
+            Object.values(secciones)
                 .forEach(seccion => {
 
                     seccion.classList.add(
@@ -1181,32 +1283,34 @@
                 .forEach(boton => {
 
                     boton.classList.toggle(
+
                         "active",
-                        boton.dataset.seccion
-                        === nombre
+
+                        boton.dataset.seccion ===
+                        nombre
+
                     );
 
                 });
 
 
             if (nombre === "resumen") {
-
                 renderizarResumen();
-
             }
 
 
             if (nombre === "productos") {
-
                 renderizarTabla();
-
             }
 
 
             if (nombre === "pedidos") {
-
                 renderizarPedidos();
+            }
 
+
+            if (nombre === "usuarios") {
+                renderizarUsuarios();
             }
 
         }
@@ -2768,6 +2872,97 @@
 
 
             modalPedido.show();
+
+        }
+
+        // ==========================================
+        // RENDERIZAR USUARIOS
+        // ==========================================
+
+        function renderizarUsuarios() {
+
+            const cuerpo =
+                document.getElementById(
+                    "cuerpoUsuarios"
+                );
+
+
+            if (!cuerpo) {
+                return;
+            }
+
+
+            const usuarios =
+                obtenerUsuariosAdmin();
+
+
+            cuerpo.replaceChildren();
+
+
+            if (usuarios.length === 0) {
+
+                cuerpo.innerHTML = `
+            <tr>
+                <td
+                    colspan="6"
+                    class="text-center text-muted py-4"
+                >
+                    Todavía no hay usuarios registrados.
+                </td>
+            </tr>
+        `;
+
+                return;
+            }
+
+
+            usuarios.forEach(usuario => {
+
+                const fila =
+                    document.createElement("tr");
+
+
+                fila.innerHTML = `
+
+            <td>
+                <strong>
+                    ${usuario.id || "Sin ID"}
+                </strong>
+            </td>
+
+            <td>
+                ${usuario.nombre || "Sin nombre"}
+            </td>
+
+            <td>
+                ${usuario.email || "Sin correo"}
+            </td>
+
+            <td>
+                ${usuario.fechaRegistro || "No disponible"}
+            </td>
+
+            <td>
+                ${usuario.rol || "Cliente"}
+            </td>
+
+            <td>
+                <span
+                    class="
+                        admin-estado
+                        admin-estado-pagado
+                    "
+                >
+                    ${usuario.estado || "Activo"}
+                </span>
+            </td>
+
+        `;
+
+
+                cuerpo.appendChild(fila);
+
+            });
 
         }
 
