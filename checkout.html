@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Finalizar compra | FullComponents Store</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/checkout.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- ========================================
+         NAVBAR
+    ========================================= -->
+
+    <header>
+        <nav class="navbar navbar-dark navbar-principal">
+
+            <div class="container-fluid px-4">
+
+                <!-- Logo -->
+                <a class="navbar-brand d-flex align-items-center" href="index.html">
+                    <span class="logo-icon">▣</span>
+
+                    <span class="logo-text-mobile ms-2 d-md-none">
+                        FC Store
+                    </span>
+
+                    <div class="ms-2 d-none d-md-block">
+                        <span class="logo-text">
+                            FullComponents Store
+                        </span>
+
+                        <small class="d-block logo-subtitle">
+                            Componentes para grandes ideas
+                        </small>
+                    </div>
+                </a>
+
+                <!-- Buscador -->
+                <form class="d-flex buscador mx-4 flex-grow-1" role="search" action="catálogo.html" method="GET">
+                    <input class="form-control" type="search" name="q"
+                        placeholder="Buscar productos, marcas o categorías..." aria-label="Buscar productos">
+
+                    <button class="btn btn-buscar" type="submit">
+                        🔍
+                    </button>
+                </form>
+
+                <!-- Usuario -->
+                <div class="nav-opciones d-flex align-items-center">
+
+                    <a href="login.html" id="linkSesion" class="nav-link text-white me-4">
+                        👤
+                        <span class="d-none d-md-inline texto-sesion">
+                            Iniciar sesión
+                        </span>
+                    </a>
+
+                    <a href="carrito.html" class="nav-link text-white carrito">
+                        🛒
+                    </a>
+
+                </div>
+
+            </div>
+
+        </nav>
+    </header>
+
+
+    <!-- ========================================
+         CONTENIDO PRINCIPAL
+    ========================================= -->
+
+    <main class="container py-5">
+
+        <div class="mb-4">
+
+            <a href="carrito.html" class="text-decoration-none">
+                ← Volver al carrito
+            </a>
+
+            <h1 class="h2 mt-3 mb-1">
+                Finalizar compra
+            </h1>
+
+            <p class="text-muted">
+                Completa tus datos para realizar tu pedido.
+            </p>
+
+        </div>
+
+
+        <div class="row g-4">
+
+            <!-- ========================================
+                 FORMULARIO
+            ========================================= -->
+
+            <div class="col-lg-8">
+
+                <form id="formCheckout">
+
+
+                    <!-- ========================================
+                         DATOS PERSONALES
+                    ========================================= -->
+
+                    <section class="checkout-card mb-4">
+
+                        <div class="checkout-card-header">
+
+                            <span class="checkout-numero">
+                                1
+                            </span>
+
+                            <div>
+                                <h2 class="h5 mb-0">
+                                    Datos del comprador
+                                </h2>
+
+                                <small class="text-muted">
+                                    Información de contacto
+                                </small>
+                            </div>
+
+                        </div>
+
+
+                        <div class="row g-3 mt-1">
+
+                            <div class="col-md-6">
+
+                                <label for="nombre" class="form-label">
+                                    Nombre
+                                </label>
+
+                                <input type="text" class="form-control" id="nombre" required>
+
+                            </div>
+
+
+                            <div class="col-md-6">
+
+                                <label for="apellido" class="form-label">
+                                    Apellido
+                                </label>
+
+                                <input type="text" class="form-control" id="apellido" required>
+
+                            </div>
+
+
+                            <div class="col-md-6">
+
+                                <label for="rut" class="form-label">
+                                    RUT
+                                </label>
+
+                                <input type="text" class="form-control" id="rut" placeholder="12.345.678-9"
+                                    maxlength="12" inputmode="text" required>
+
+                            </div>
+
+
+                            <div class="col-md-6">
+
+                                <label for="telefono" class="form-label">
+                                    Teléfono
+                                </label>
+
+                                <input type="tel" class="form-control" id="telefono" placeholder="+56 9 1234 5678"
+                                    required>
+
+                            </div>
+
+
+                            <div class="col-12">
+
+                                <label for="correo" class="form-label">
+                                    Correo electrónico
+                                </label>
+
+                                <input type="email" class="form-control" id="correo" placeholder="ejemplo@correo.cl"
+                                    required>
+
+                                <div class="form-text">
+                                    Utilizaremos este correo para identificar
+                                    tu pedido.
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- ========================================
+                         DIRECCIÓN
+                    ========================================= -->
+
+                    <section class="checkout-card mb-4">
+
+                        <div class="checkout-card-header">
+
+                            <span class="checkout-numero">
+                                2
+                            </span>
+
+                            <div>
+                                <h2 class="h5 mb-0">
+                                    Dirección de envío
+                                </h2>
+
+                                <small class="text-muted">
+                                    ¿Dónde quieres recibir tu compra?
+                                </small>
+                            </div>
+
+                        </div>
+
+
+                        <div class="row g-3 mt-1">
+
+
+                            <div class="col-md-6">
+
+                                <label for="region" class="form-label">
+                                    Región
+                                </label>
+
+                                <select class="form-select" id="region" required>
+                                    <option value="">
+                                        Selecciona una región
+                                    </option>
+
+                                    <option>Arica y Parinacota</option>
+                                    <option>Tarapacá</option>
+                                    <option>Antofagasta</option>
+                                    <option>Atacama</option>
+                                    <option>Coquimbo</option>
+                                    <option>Valparaíso</option>
+                                    <option>Metropolitana</option>
+                                    <option>O'Higgins</option>
+                                    <option>Maule</option>
+                                    <option>Ñuble</option>
+                                    <option>Biobío</option>
+                                    <option>La Araucanía</option>
+                                    <option>Los Ríos</option>
+                                    <option>Los Lagos</option>
+                                    <option>Aysén</option>
+                                    <option>Magallanes</option>
+                                </select>
+
+                            </div>
+
+
+                            <div class="col-md-6">
+
+                                <label for="comuna" class="form-label">
+                                    Comuna
+                                </label>
+
+                                <input type="text" class="form-control" id="comuna" required>
+
+                            </div>
+
+
+                            <div class="col-md-8">
+
+                                <label for="calle" class="form-label">
+                                    Calle
+                                </label>
+
+                                <input type="text" class="form-control" id="calle" required>
+
+                            </div>
+
+
+                            <div class="col-md-4">
+
+                                <label for="numeroDireccion" class="form-label">
+                                    Número
+                                </label>
+
+                                <input type="text" class="form-control" id="numeroDireccion" required>
+
+                            </div>
+
+
+                            <div class="col-md-6">
+
+                                <label for="departamento" class="form-label">
+                                    Departamento / Casa
+                                </label>
+
+                                <input type="text" class="form-control" id="departamento">
+
+                            </div>
+
+
+                            <div class="col-md-6">
+
+                                <label for="referencia" class="form-label">
+                                    Referencia
+                                </label>
+
+                                <input type="text" class="form-control" id="referencia" placeholder="Ej: casa esquina">
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- ========================================
+                         MÉTODO DE PAGO
+                    ========================================= -->
+
+                    <section class="checkout-card mb-4">
+
+                        <div class="checkout-card-header">
+
+                            <span class="checkout-numero">
+                                3
+                            </span>
+
+                            <div>
+                                <h2 class="h5 mb-0">
+                                    Método de pago
+                                </h2>
+
+                                <small class="text-muted">
+                                    Pago simulado para fines académicos
+                                </small>
+                            </div>
+
+                        </div>
+
+
+                        <div class="alert alert-light border mt-4">
+
+                            💳
+                            <strong>
+                                Tarjeta de crédito o débito
+                            </strong>
+
+                        </div>
+
+
+                        <div class="row g-3">
+
+                            <div class="col-12">
+
+                                <label for="titularTarjeta" class="form-label">
+                                    Nombre del titular
+                                </label>
+
+                                <input type="text" class="form-control" id="titularTarjeta" placeholder="JUAN PEREZ"
+                                    required>
+
+                            </div>
+
+
+                            <div class="col-12">
+
+                                <label for="numeroTarjeta" class="form-label">
+                                    Número de tarjeta
+                                </label>
+
+                                <input type="text" class="form-control" id="numeroTarjeta"
+                                    placeholder="1234 5678 9012 3456" maxlength="19" inputmode="numeric" required>
+
+                            </div>
+
+
+                            <div class="col-md-6">
+
+                                <label for="vencimiento" class="form-label">
+                                    Vencimiento
+                                </label>
+
+                                <input type="text" class="form-control" id="vencimiento" placeholder="MM/AA"
+                                    maxlength="5" required>
+
+                            </div>
+
+
+                            <div class="col-md-6">
+
+                                <label for="cvv" class="form-label">
+                                    CVV
+                                </label>
+
+                                <input type="password" class="form-control" id="cvv" placeholder="123" maxlength="3"
+                                    inputmode="numeric" pattern="[0-9]{3}" required>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="alert alert-warning mt-4 mb-0">
+
+                            <small>
+                                ⚠️ Este sitio es una simulación académica.
+                                No ingreses datos de una tarjeta bancaria real.
+                            </small>
+
+                        </div>
+
+                    </section>
+
+                </form>
+
+            </div>
+
+
+            <!-- ========================================
+                 RESUMEN PEDIDO
+            ========================================= -->
+
+            <aside class="col-lg-4">
+
+                <div class="checkout-card resumen-pedido">
+
+                    <h2 class="h5 mb-4">
+                        Resumen del pedido
+                    </h2>
+
+
+                    <!-- Los productos se cargarán con JS -->
+
+                    <div id="productosCheckout">
+
+                        <p class="text-muted">
+                            Cargando productos...
+                        </p>
+
+                    </div>
+
+
+                    <hr>
+
+
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>
+                            Subtotal
+                        </span>
+
+                        <span id="subtotalCheckout">
+                            $0
+                        </span>
+                    </div>
+
+
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>
+                            Envío
+                        </span>
+
+                        <span class="text-success">
+                            Gratis
+                        </span>
+                    </div>
+
+
+                    <hr>
+
+
+                    <div class="d-flex justify-content-between
+                               align-items-center mb-4">
+
+                        <strong class="fs-5">
+                            Total
+                        </strong>
+
+                        <strong class="fs-4 precio-total" id="totalCheckout">
+                            $0
+                        </strong>
+
+                    </div>
+
+
+                    <button type="submit" form="formCheckout" class="btn btn-primary w-100 btn-lg"
+                        id="btnConfirmarCompra">
+                        Confirmar compra
+                    </button>
+
+
+                    <p class="text-muted text-center small mt-3 mb-0">
+                        🔒 Pago seguro simulado
+                    </p>
+
+                </div>
+
+            </aside>
+
+        </div>
+
+    </main>
+
+
+    <!-- ========================================
+         BOOTSTRAP
+    ========================================= -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">
+    </script>
+
+    <script src="js/productos.js"></script>
+    <script src="js/catalogo-datos.js"></script>
+    <script src="js/carrito.js"></script>
+    <script src="js/sesion.js"></script>
+    <script src="js/checkout.js"></script>
+
+
+</body>
+
+</html>
